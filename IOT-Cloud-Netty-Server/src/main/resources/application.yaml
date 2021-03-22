@@ -1,0 +1,5 @@
+netty: 
+    server: 
+        ids: testID1,testID2
+        port: 54321
+    is-server: true
