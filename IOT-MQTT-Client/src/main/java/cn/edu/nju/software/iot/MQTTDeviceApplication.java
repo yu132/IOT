@@ -24,7 +24,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-public class DeviceApplication implements CommandLineRunner {
+public class MQTTDeviceApplication implements CommandLineRunner {
 
     @Autowired
     private MQTTClient client;
@@ -62,7 +62,7 @@ public class DeviceApplication implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(DeviceApplication.class, args);
+        SpringApplication.run(MQTTDeviceApplication.class, args);
     }
 
 }

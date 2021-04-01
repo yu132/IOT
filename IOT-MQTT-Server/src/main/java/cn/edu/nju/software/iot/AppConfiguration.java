@@ -3,8 +3,9 @@ package cn.edu.nju.software.iot;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import cn.edu.nju.software.iot.gateWay.GateWayMesgHandler;
-import cn.edu.nju.software.iot.gateWay.IOTDeviceAuth;
+import cn.edu.nju.software.iot.http.gateWay.MesgCache;
+import cn.edu.nju.software.iot.mqtt.gateWay.GateWayMesgHandler;
+import cn.edu.nju.software.iot.mqtt.gateWay.IOTDeviceAuth;
 import cn.edu.nju.software.iot.shared.mqtt.MQTTClient;
 import cn.edu.nju.software.iot.shared.netty.client.NettyClient;
 import cn.hutool.core.codec.Base64;
@@ -29,14 +30,17 @@ public class AppConfiguration {
     @Autowired
     GateWayMesgHandler gateWayMesgHandler;
 
+    @Autowired
+    private MesgCache mesgCache;
+
     @Bean(name = "mesgFromDeviceToCloudConsumer")
     public BiConsumer<String, String>
         getMesgFromDeviceToCloudConsumer(NettyClient nettyClient) {
         return (topic, str) -> {
             System.out.println("接收到数据：" + topic + " " + str);
             String data = Base64.encode(str);
-            topic = topic.replaceAll("_fromDevice", "");
-            nettyClient.sendMesg(topic + " " + data);
+            String deviceId = topic.replaceAll("_fromDevice", "");
+            nettyClient.sendMesg(deviceId + " " + data);
         };
     }
 
@@ -58,6 +62,7 @@ public class AppConfiguration {
                 return;
             }
             mqttClient.publish(deviceName + "_fromCloud", data);
+            mesgCache.cacheData(deviceName, data);
         };
     }
 

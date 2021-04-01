@@ -1,17 +1,8 @@
 package cn.edu.nju.software.iot;
 
-import java.util.concurrent.locks.LockSupport;
-import java.util.function.Consumer;
-
-import javax.annotation.Resource;
-
-import cn.edu.nju.software.iot.gateWay.IOTDeviceAuth;
-import cn.edu.nju.software.iot.shared.mqtt.MQTTClient;
-import cn.edu.nju.software.iot.shared.netty.client.NettyClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**  
  * @ClassName: Application  
@@ -25,35 +16,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-public class GateWayApplication implements CommandLineRunner {
+public class GateWayApplication {
 
-    @Autowired
-    private MQTTClient mqttClient;
+    public static void main(String[] args) throws Exception {
+        ConfigurableApplicationContext context =
+            SpringApplication.run(GateWayApplication.class, args);
 
-    @Autowired
-    private NettyClient nettyClient;
+        MQTTStarter starter = context.getBean(MQTTStarter.class);
 
-    @Autowired
-    private IOTDeviceAuth auth;
-
-    @Resource(name = "mesgFromCloudToDeviceConsumer")
-    private Consumer<String> todevice;
-
-    @Override
-    public void run(String... args) throws Exception {
-        mqttClient.connect();
-
-        auth.init();
-
-        nettyClient.connect();
-
-        nettyClient.setMesgFromColudServerHandler(todevice);
-
-        LockSupport.park();
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(GateWayApplication.class, args);
+        starter.run();
     }
 
 }

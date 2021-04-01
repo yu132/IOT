@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 /**  
  * @ClassName: AppConfiguration  
@@ -66,6 +67,27 @@ public class AppConfiguration {
     @Bean(name = "receiveTopic")
     public String receiveTopic(@Value("${mqtt.id}") String id) {
         return id + "_fromCloud";
+    }
+
+    @Bean(name = "httpUrl")
+    public String httpUrl(@Value("${http.ip}") String ip,
+        @Value("${http.port}") String port) {
+        return "http://" + ip + ":" + port + "/";
+    }
+
+    @Bean(name = "postDataUrl")
+    public String postDataUrl(String httpUrl) {
+        return httpUrl + "post-data?deviceId={1}&data={2}";
+    }
+
+    @Bean(name = "getDataUrl")
+    public String getDataUrl(String httpUrl) {
+        return httpUrl + "get-data?deviceId={1}";
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
     @Bean

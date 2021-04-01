@@ -1,4 +1,4 @@
-package cn.edu.nju.software.iot.gateWay;
+package cn.edu.nju.software.iot.mqtt.gateWay;
 
 import org.springframework.stereotype.Component;
 

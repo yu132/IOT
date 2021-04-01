@@ -1,4 +1,4 @@
-package cn.edu.nju.software.iot.gateWay;
+package cn.edu.nju.software.iot.mqtt.gateWay;
 
 import java.util.HashSet;
 import java.util.List;

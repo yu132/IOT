@@ -12,3 +12,5 @@ netty:
     is-client: true
 device: 
     allow-id: device-1,device-2
+server:
+    port: 54322
