@@ -1,8 +1,9 @@
 import { instance } from '../util/request';
-import {
+import { consts } from '../util/consts';
+const {
     getLampsUrl,
     getDataChartInfoUrl
-} from '../util/consts';
+} = consts;
 
 const api = {
     /**
@@ -21,4 +22,4 @@ const api = {
     }
 };
 
-export default api;
+export { api };

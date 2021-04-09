@@ -1,10 +1,11 @@
 // 请求工具
 import axios from 'axios';
-import {
+import { consts } from './consts';
+const {
     serverHost,
     serverPort,
     timeout
-} from './consts';
+} = consts;
 
 const instance = axios.create({
     baseURL: `http://${ serverHost }:${ serverPort }/`,

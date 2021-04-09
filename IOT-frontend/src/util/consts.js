@@ -9,4 +9,6 @@ const consts = {
     timeout: 10000
 };
 
-export default consts;
+export {
+    consts
+};
