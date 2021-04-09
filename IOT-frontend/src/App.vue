@@ -1,10 +1,12 @@
 <template>
-  <div id="app">
+  <el-container id="app">
     <Header />
-    <DeviceManage />
-    <IntelligentScene />
-    <DataChart />
-  </div>
+    <el-main>
+      <DeviceManage />
+      <IntelligentScene />
+      <DataChart />
+    </el-main>
+  </el-container>
 </template>
 
 <script>
