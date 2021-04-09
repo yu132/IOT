@@ -2,6 +2,7 @@
 // TODO 修改服务端配置信息
 
 const consts = {
+    getLampsUrl: '/getLamps',
     serverHost: 'localhost',
     serverPort: 9000,
     timeout: 10000

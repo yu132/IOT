@@ -1,6 +1,6 @@
 // Vuex store
-
 import Vuex from 'vuex';
+import api from '../api';
 
 const store = new Vuex.Store({
     state: {
@@ -11,14 +11,14 @@ const store = new Vuex.Store({
         setTitle (state, title) {
             state.title = title;
         },
-        setLamps (state, lamps) {
+        setLamps (state, lamps = []) {
             state.lamps = [...lamps];
         }
     },
     actions: {
         async initLamps ({ commit }) {
-            // TODO 获取灯泡数据
-            commit('setLamps', []);
+            const { data } = await api.getLamps();
+            commit('setLamps', data);
         }
     }
 });
