@@ -6,11 +6,14 @@
       <IntelligentScene />
       <DataChart />
     </el-main>
+    <Footer />
   </el-container>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import DeviceManage from "./components/DeviceManage";
 import IntelligentScene from "./components/IntelligentScene";
 import DataChart from "./components/DataChart";
@@ -22,6 +25,13 @@ export default {
     DeviceManage,
     IntelligentScene,
     DataChart,
+    Footer,
+  },
+  methods: {
+    ...mapActions(["initStore"]),
+  },
+  mounted() {
+    this.initStore();
   },
 };
 </script>
