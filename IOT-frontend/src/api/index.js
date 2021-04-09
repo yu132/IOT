@@ -8,7 +8,8 @@ const {
 const api = {
     /**
      * 获取灯泡数据
-     * @returns {Promise<Array>}
+     * TODO 添加更多灯泡属性
+     * @returns {Promise<Array<{ name: String, id: String, isOn: Boolean }>>}
      */
     getLamps () {
         return instance.get(getLampsUrl);
