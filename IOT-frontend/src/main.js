@@ -11,5 +11,6 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false;
 
 new Vue({
+  store: require('./store').default,
   render: h => h(App),
 }).$mount('#app');
