@@ -1,19 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header />
+    <DeviceManage />
+    <IntelligentScene />
+    <DataChart />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/Header";
+import DeviceManage from "./components/DeviceManage";
+import IntelligentScene from "./components/IntelligentScene";
+import DataChart from "./components/DataChart";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    DeviceManage,
+    IntelligentScene,
+    DataChart,
+  },
+};
 </script>
 
 <style>
