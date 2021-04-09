@@ -5,7 +5,8 @@ import api from '../api';
 const store = new Vuex.Store({
     state: {
         title: 'IOT 设备管理',
-        lamps: []
+        lamps: [],
+        dataChartInfos: []
     },
     mutations: {
         setTitle (state, title) {
@@ -13,12 +14,25 @@ const store = new Vuex.Store({
         },
         setLamps (state, lamps = []) {
             state.lamps = [...lamps];
+        },
+        setDataChartInfos (state, dataChartInfos = []) {
+            state.lamps = [...dataChartInfos];
         }
     },
     actions: {
+        async initStore ({ dispatch }) {
+            Promise.all([
+                dispatch('initLamps'),
+                dispatch('initDataChartInfos')
+            ]);
+        },
         async initLamps ({ commit }) {
             const { data } = await api.getLamps();
             commit('setLamps', data);
+        },
+        async initDataChartInfos ({ commit }) {
+            const { data } = await api.getDataChartInfo();
+            commit('setDataChartInfos', data);
         }
     }
 });
