@@ -16,7 +16,7 @@ const store = new Vuex.Store({
             state.lamps = [...lamps];
         },
         setDataChartInfos (state, dataChartInfos = []) {
-            state.lamps = [...dataChartInfos];
+            state.dataChartInfos = [...dataChartInfos];
         }
     },
     actions: {
