@@ -1,5 +1,5 @@
 <template>
-  <el-header>{{ title }}</el-header>
+  <div>{{ title }}</div>
 </template>
 
 <script>

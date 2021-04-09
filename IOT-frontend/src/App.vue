@@ -1,12 +1,16 @@
 <template>
   <el-container id="app">
-    <Header />
+    <el-header>
+      <Header />
+    </el-header>
     <el-main>
       <DeviceManage />
       <IntelligentScene />
       <DataChart />
     </el-main>
-    <Footer />
+    <el-footer>
+      <Footer />
+    </el-footer>
   </el-container>
 </template>
 
