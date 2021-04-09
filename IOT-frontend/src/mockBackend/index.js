@@ -5,6 +5,12 @@ const {
     getDataChartInfoUrl
 } = require('../util/consts/consts.json');
 
+// mock 数据
+const {
+    mockLamps,
+    mockDataChartInfos
+} = require('./mockData');
+
 // 启动服务器
 const Koa = require('koa');
 const Router = require('koa-router');
@@ -32,13 +38,11 @@ async function mockServerDelayWait (_, next) {
 }
 
 router.get(getLampsUrl, async function (ctx) {
-    // TODO 返回 mock 的灯泡设备数据
-    ctx.body = [];
+    ctx.body = mockLamps;
 });
 
 router.get(getDataChartInfoUrl, async function (ctx) {
-    // TODO 返回 mock 的数据图表信息数据
-    ctx.body = [];
+    ctx.body = mockDataChartInfos;
 });
 
 app.use(allowOrigin);
@@ -47,4 +51,3 @@ app.use(router.routes());
 
 app.listen(serverPort);
 
-console.log(`mock server 已启动 localhost:${ serverPort }`);

@@ -1,0 +1,12 @@
+[
+    {
+        "name": "1",
+        "id": "1",
+        "isOn": true
+    },
+    {
+        "name": "2",
+        "id": "2",
+        "isOn": false
+    }
+]
