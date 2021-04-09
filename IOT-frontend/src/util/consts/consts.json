@@ -1,0 +1,7 @@
+{
+    "getDataChartInfoUrl": "/getDataChartInfoUrl",
+    "getLampsUrl": "/getLamps",
+    "serverHost": "localhost",
+    "serverPort": 9000,
+    "timeout": 10000
+}
