@@ -5,16 +5,29 @@
         {{ lamp.name }}
       </span>
     </div>
-    <!-- TODO -->
     <div class="color-wrapper row-height">
-      <span class="info-for"> 颜色：{{ colorStr }} </span>
+      <span class="info-for">颜色：</span>
+      <span
+        class="color-rect"
+        :style="{ backgroundColor: colorStr }"
+        @click="onColorRectClick"
+      />
+      <div class="color-selector-wrapper" v-show="colorSelectorWrapperShow">
+        <span
+          class="color-selector-rect"
+          v-for="color in colors"
+          :key="color"
+          :style="{ backgroundColor: color }"
+          @click="() => onColorSelectorClick(color)"
+        />
+      </div>
     </div>
     <div class="lightness-wrapper row-height">
-      <span class="info-for"> 亮度：</span>
+      <span class="info-for">亮度：</span>
       <el-slider
         v-model="lightness"
-        @change="onLightnessChange"
         :style="{ flex: 1 }"
+        @change="onLightnessChange"
       ></el-slider>
     </div>
     <div class="last-use-time-wrapper row-height">
@@ -57,12 +70,14 @@ export default {
   },
   data() {
     return {
+      colorSelectorWrapperShow: false,
       lightness: this.lamp.lightness,
+      colors: consts.colors,
     };
   },
   computed: {
     colorStr() {
-      return consts.colors[this.lamp.color];
+      return this.colors[this.lamp.color];
     },
     isConnectedStr() {
       return this.lamp.isConnected ? "已连接" : "连接已断开";
@@ -90,9 +105,26 @@ export default {
     },
   },
   methods: {
+    onColorRectClick() {
+      if (this.colorSelectorWrapperShow) {
+        return;
+      }
+      this.colorSelectorWrapperShow = true;
+      setTimeout(() => {
+        document.addEventListener("click", this.onDocumentClick);
+      });
+    },
+    onDocumentClick() {
+      this.colorSelectorWrapperShow = false;
+      document.removeEventListener("click", this.onDocumentClick);
+    },
+    onColorSelectorClick(color) {
+      // TODO
+      console.log("onColorSelectorClick: ", color);
+    },
     onLightnessChange() {
       // TODO
-      console.log("onLightnessChange");
+      console.log("onLightnessChange", this.lightness);
     },
     onRemoveDeviceClick() {
       // TODO
@@ -127,13 +159,40 @@ export default {
   line-height: 24px;
   padding: 0 6px;
 }
-.row-height > .info-for {
-  margin-right: 10px;
-}
+.color-wrapper,
 .lightness-wrapper {
   display: flex;
   align-items: center;
   padding-right: 10px;
+}
+.color-wrapper > .color-rect {
+  flex: 1;
+  height: 16px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+.color-wrapper > .color-rect:hover {
+  opacity: 1;
+}
+.color-selector-wrapper {
+  display: flex;
+  padding: 3px;
+  border: 1px solid #ebeef5;
+  background: white;
+  border-radius: 3px;
+  position: absolute;
+  right: 10px;
+  transform: translateY(24px);
+  z-index: 1;
+}
+.color-selector-wrapper > .color-selector-rect {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+.color-selector-wrapper > .color-selector-rect:hover {
+  opacity: 1;
 }
 .last-use-time-wrapper {
   position: absolute;
