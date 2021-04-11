@@ -56,7 +56,7 @@ body {
   height: 100%;
   box-sizing: border-box;
   margin: 0;
-  overflow-y: scroll;
+  overflow: hidden scroll;
 
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -71,6 +71,7 @@ body {
   background: #00adff57;
 }
 #app::-webkit-scrollbar-track {
+  border-radius: 10px;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
 }
 #app > .one-page {
