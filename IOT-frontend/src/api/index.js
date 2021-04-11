@@ -9,7 +9,9 @@ const api = {
     /**
      * 获取灯泡数据
      * TODO 添加更多灯泡属性
-     * @returns {Promise<Array<{ name: String, id: String, isOn: Boolean }>>}
+     * color 备选颜色常量
+     * 亮度 0-100
+     * @returns {Promise<Array<{ name: String, id: String, isOn: Boolean, color: String, lightness: Number, isConnected: Boolean, lastUseTime: Number }>>}
      */
     getLamps () {
         return instance.get(getLampsUrl);

@@ -1,4 +1,9 @@
 {
+    "colors": [
+        "red",
+        "yellow",
+        "green"
+    ],
     "getDataChartInfoUrl": "/getDataChartInfoUrl",
     "getLampsUrl": "/getLamps",
     "serverHost": "localhost",

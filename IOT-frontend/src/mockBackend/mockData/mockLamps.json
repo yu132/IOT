@@ -2,11 +2,19 @@
     {
         "name": "1",
         "id": "1",
-        "isOn": true
+        "isOn": true,
+        "color": 0,
+        "lightness": 0,
+        "isConnected": true,
+        "lastUseTime": 1618110685074
     },
     {
         "name": "2",
         "id": "2",
-        "isOn": false
+        "isOn": false,
+        "color": 1,
+        "lightness": 0,
+        "isConnected": true,
+        "lastUseTime": 1618110685074
     }
 ]
