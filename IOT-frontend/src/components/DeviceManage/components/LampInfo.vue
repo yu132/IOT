@@ -1,25 +1,39 @@
 <template>
   <div class="lamp-info-wrapper card" :class="{ 'is-on': lamp.isOn }">
     <div class="header row-height">
-      <span>{{ lamp.name }}</span>
+      <span>
+        {{ lamp.name }}
+      </span>
     </div>
     <!-- TODO -->
     <div class="color-wrapper row-height">
-      <span>颜色: {{ colorStr }}</span>
+      <span> 颜色: {{ colorStr }} </span>
     </div>
     <div class="lightness-wrapper row-height">
-      <span>lightness: {{ lamp.lightness }}</span>
+      <span> lightness: {{ lamp.lightness }} </span>
     </div>
-    <div class="info-wrapper row-height">
-      <span class="is-connect-prompt">{{ isConnectedStr }}</span>
-      <span>{{ lastUseTimeStr }}</span>
+    <div class="last-use-time-wrapper row-height">
+      <span>
+        {{ lastUseTimeStr }}
+      </span>
     </div>
     <div class="footer row-height">
       <!-- TODO -->
-      <span class="remove-device clickable-span" @click="onRemoveDeviceClick"
-        >移除设备</span
+      <span class="is-connect-prompt">
+        {{ isConnectedStr }}
+      </span>
+      <span
+        class="remove-device clickable-span"
+        :style="{ color: '#F56C6C' }"
+        @click="onRemoveDeviceClick"
       >
-      <span class="operate-device clickable-span" @click="onOperateDeviceClick">
+        移除设备
+      </span>
+      <span
+        class="operate-device clickable-span"
+        :style="{ color: '#409EFF' }"
+        @click="onOperateDeviceClick"
+      >
         {{ turnOnOffStr }}
       </span>
     </div>
@@ -42,14 +56,25 @@ export default {
       return consts.colors[this.lamp.color];
     },
     isConnectedStr() {
-      return this.lamp.isConnected ? "已连接" : "已断开连接";
+      return this.lamp.isConnected ? "已连接" : "连接已断开";
     },
     lastUseTimeStr() {
       const time = new Date(this.lamp.lastUseTime);
       const hour = time.getHours();
       const minute = time.getMinutes();
       const second = time.getSeconds();
-      return `${hour}:${minute}:${second}`;
+      const timeStr = `${hour}:${minute}:${second}`;
+
+      const oneDateTime = 24 * 60 * 60 * 1000;
+      const dateCount =
+        Math.floor(Date.now() / oneDateTime) - Math.floor(time / oneDateTime);
+      const dateStr =
+        dateCount === 0
+          ? "今天"
+          : dateCount === 1
+          ? "昨天"
+          : `${dateCount}天前`;
+      return `${dateStr} ${timeStr}`;
     },
     turnOnOffStr() {
       return this.lamp.isOn ? "关灯" : "开灯";
@@ -77,25 +102,45 @@ export default {
   position: relative;
 }
 .header {
-  width: 100%;
   font-size: 18px;
-  box-sizing: border-box;
   text-align: center;
   position: relative;
   border-bottom: 1px solid #ebeef5;
 }
 .row-height {
+  width: 100%;
   height: 24px;
+  box-sizing: border-box;
   line-height: 24px;
+  padding: 0 3px;
+}
+.last-use-time-wrapper {
+  position: absolute;
+  left: 0;
+  bottom: 24px;
+  text-align: right;
+  color: #909399;
+  font-size: 10px;
 }
 .footer {
-  width: 100%;
-  font-size: 12px;
-  box-sizing: border-box;
+  font-size: 14px;
   text-align: right;
   position: absolute;
   left: 0;
   bottom: 0;
   border-top: 1px solid #ebeef5;
+}
+.footer > .is-connect-prompt {
+  font-size: 12px;
+  float: left;
+  opacity: 0.8;
+}
+.clickable-span {
+  cursor: pointer;
+  opacity: 0.8;
+  font-weight: bold;
+}
+.clickable-span:hover {
+  opacity: 1;
 }
 </style>
