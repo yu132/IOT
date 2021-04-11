@@ -80,5 +80,6 @@ body {
   box-sizing: border-box;
   padding: 20px;
   padding-top: 60px;
+  position: relative;
 }
 </style>
