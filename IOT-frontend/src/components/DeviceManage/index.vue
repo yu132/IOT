@@ -38,7 +38,6 @@ export default {
   flex-wrap: wrap;
 }
 .device-manage-wrapper > .card {
-  width: 140px;
   height: 200px;
   border-radius: 10px;
   box-sizing: border-box;

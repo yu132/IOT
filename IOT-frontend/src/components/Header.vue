@@ -1,5 +1,7 @@
 <template>
-  <div class="header-wrapper">{{ title }}</div>
+  <div class="header-wrapper">
+    <span>{{ title }}</span>
+  </div>
 </template>
 
 <script>

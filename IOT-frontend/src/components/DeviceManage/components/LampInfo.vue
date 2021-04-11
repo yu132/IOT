@@ -1,20 +1,27 @@
 <template>
   <div class="lamp-info-wrapper card" :class="{ 'is-on': lamp.isOn }">
-    <div class="header">
-      <i class="el-icon-table-lamp"></i>
+    <div class="header row-height">
       <span>{{ lamp.name }}</span>
-      <span>{{ isConnectedStr }}</span>
     </div>
-    <div class="setting">
-      <!-- TODO -->
-      <div>颜色: {{ colorStr }}</div>
-      <div>lightness: {{ lamp.lightness }}</div>
+    <!-- TODO -->
+    <div class="color-wrapper row-height">
+      <span>颜色: {{ colorStr }}</span>
     </div>
-    <div class="last-use-time-str-wrapper">{{ lastUseTimeStr }}</div>
-    <div class="btns-wrapper">
+    <div class="lightness-wrapper row-height">
+      <span>lightness: {{ lamp.lightness }}</span>
+    </div>
+    <div class="info-wrapper row-height">
+      <span class="is-connect-prompt">{{ isConnectedStr }}</span>
+      <span>{{ lastUseTimeStr }}</span>
+    </div>
+    <div class="footer row-height">
       <!-- TODO -->
-      <el-button type="danger" plain>移除设备</el-button>
-      <el-button type="primary" plain>{{ turnOnOffStr }}</el-button>
+      <span class="remove-device clickable-span" @click="onRemoveDeviceClick"
+        >移除设备</span
+      >
+      <span class="operate-device clickable-span" @click="onOperateDeviceClick">
+        {{ turnOnOffStr }}
+      </span>
     </div>
   </div>
 </template>
@@ -39,25 +46,56 @@ export default {
     },
     lastUseTimeStr() {
       const time = new Date(this.lamp.lastUseTime);
-      const year = time.getFullYear();
-      const month = time.getMonth() + 1;
-      const date = time.getDate();
       const hour = time.getHours();
       const minute = time.getMinutes();
       const second = time.getSeconds();
-      return `${year}-${month}-${date} ${hour}:${minute}:${second}`;
+      return `${hour}:${minute}:${second}`;
     },
     turnOnOffStr() {
       return this.lamp.isOn ? "关灯" : "开灯";
     },
   },
+  methods: {
+    onRemoveDeviceClick() {
+      // TODO
+      console.log("onRemoveDeviceClick");
+    },
+    onOperateDeviceClick() {
+      // TODO
+      console.log("onOperateDeviceClick");
+    },
+  },
 };
 </script>
 
-<style>
+<style scoped>
 .lamp-info-wrapper {
+  width: 180px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  font-size: 14px;
+  position: relative;
+}
+.header {
+  width: 100%;
+  font-size: 18px;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid #ebeef5;
+}
+.row-height {
+  height: 24px;
+  line-height: 24px;
+}
+.footer {
+  width: 100%;
+  font-size: 12px;
+  box-sizing: border-box;
+  text-align: right;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid #ebeef5;
 }
 </style>

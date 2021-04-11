@@ -16,7 +16,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 300px !important;
+  width: 300px;
   padding: 20px;
 }
 </style>
