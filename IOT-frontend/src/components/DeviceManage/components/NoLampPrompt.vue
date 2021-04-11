@@ -1,5 +1,5 @@
 <template>
-  <div>NoLampPrompt</div>
+  <div class="card">NoLampPrompt</div>
 </template>
 
 <script>

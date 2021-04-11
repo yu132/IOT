@@ -1,5 +1,5 @@
 <template>
-  <div class="lamp-info-wrapper" :class="{ 'is-on': lamp.isOn }">
+  <div class="lamp-info-wrapper card" :class="{ 'is-on': lamp.isOn }">
     <div class="header">
       <i class="el-icon-table-lamp"></i>
       <span>{{ lamp.name }}</span>

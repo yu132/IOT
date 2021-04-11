@@ -37,4 +37,16 @@ export default {
   display: flex;
   flex-wrap: wrap;
 }
+.device-manage-wrapper > .card {
+  width: 140px;
+  height: 200px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: white;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+  margin: 20px;
+}
+.device-manage-wrapper > .card:hover {
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 20%);
+}
 </style>
