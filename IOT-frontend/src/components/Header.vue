@@ -28,8 +28,8 @@ export default {
   font-size: 28px;
   font-weight: bolder;
   z-index: 1;
-  background: #f2f6fc;
-  border-bottom: thin solid #dcdfe6;
-  box-sizing: border-box;
+  background: #ebeef5;
+  border-bottom: 1px solid #ebeef5;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
 }
 </style>
