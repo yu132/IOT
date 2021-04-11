@@ -60,6 +60,7 @@
 <script>
 // 设备管理-灯泡信息
 import { consts } from "./../../../util/consts";
+import { api } from "../../../api";
 export default {
   name: "DeviceManage_LampInfo",
   props: {
@@ -130,9 +131,19 @@ export default {
       // TODO
       console.log("onRemoveDeviceClick");
     },
-    onOperateDeviceClick() {
-      // TODO
-      console.log("onOperateDeviceClick");
+    async onOperateDeviceClick() {
+      const { id, isOn } = this.lamp;
+      if (isOn) {
+        await api.off(id);
+      } else {
+        await api.on(id);
+      }
+      this.lamp.isOn = !isOn;
+
+      this.updateLastUseTime();
+    },
+    updateLastUseTime() {
+      this.lamp.lastUseTime = Date.now();
     },
   },
 };
