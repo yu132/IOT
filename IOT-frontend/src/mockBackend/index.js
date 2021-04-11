@@ -5,6 +5,11 @@ const {
     getDataChartInfoUrl
 } = require('../util/consts/consts.json');
 
+// mock 服务器配置
+const {
+    addMockServerDelayWait
+} = require('./setting.json');
+
 // mock 数据
 const {
     mockLamps,
@@ -46,7 +51,10 @@ router.get(getDataChartInfoUrl, async function (ctx) {
 });
 
 app.use(allowOrigin);
-app.use(mockServerDelayWait);
+if (addMockServerDelayWait)
+{
+    app.use(mockServerDelayWait);
+}
 app.use(router.routes());
 
 app.listen(serverPort);
