@@ -35,7 +35,9 @@ dependencies {
 	implementation group: 'io.netty', name: 'netty-all', version: '4.1.60.Final'
 	
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.4.4'
-	
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.4.4'
+
 	testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.4.4'
 
     // Use JUnit test framework

@@ -37,6 +37,32 @@ public class CommandMesgParser {
                 } catch (Exception e) {
                     return Command.EMPTY_COMMAND;
                 }
+            case "color":
+                try {
+                    int color = Integer.valueOf(sp[1]);
+                    return new ColorSettingCommand(device, color);
+                } catch (Exception e) {
+                    return Command.EMPTY_COMMAND;
+                }
+            case "on":
+                try {
+                    return new OnSettingCommand(device);
+                } catch (Exception e) {
+                    return Command.EMPTY_COMMAND;
+                }
+            case "off":
+                try {
+                    return new OffSettingCommand(device);
+                } catch (Exception e) {
+                    return Command.EMPTY_COMMAND;
+                }
+            case "connect":
+                try {
+                    boolean connect = Boolean.valueOf(sp[1]);
+                    return new ConnectionSettingCommand(device, connect);
+                } catch (Exception e) {
+                    return Command.EMPTY_COMMAND;
+                }
             default:
                 return Command.EMPTY_COMMAND;
         }
