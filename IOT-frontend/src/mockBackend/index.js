@@ -3,6 +3,9 @@ const {
     serverPort,
     onUrl,
     offUrl,
+    brightnessUrl,
+    colorUrl,
+    disconnectUrl,
     getLampsUrl,
     getDataChartInfoUrl
 } = require('../util/consts/consts.json');
@@ -53,6 +56,7 @@ async function mockServerDelayWait (_, next) {
     await next();
 }
 
+router.options(onUrl, allowOrigin);
 router.post(onUrl, async function (ctx) {
     allowSimpleOrigin(ctx);
     const { lampId } = ctx.request.body;
@@ -60,8 +64,7 @@ router.post(onUrl, async function (ctx) {
     ctx.status = 204;
 });
 
-router.options(onUrl, allowOrigin);
-
+router.options(offUrl, allowOrigin);
 router.post(offUrl, async function (ctx) {
     allowSimpleOrigin(ctx);
     const { lampId } = ctx.request.body;
@@ -69,7 +72,29 @@ router.post(offUrl, async function (ctx) {
     ctx.status = 204;
 });
 
-router.options(offUrl, allowOrigin);
+router.options(brightnessUrl, allowOrigin);
+router.post(brightnessUrl, async function (ctx) {
+    allowSimpleOrigin(ctx);
+    const { lampId, brightness } = ctx.request.body;
+    log(`${ brightnessUrl } lampId:${ lampId }, brightness:${ brightness }`);
+    ctx.status = 204;
+});
+
+router.options(colorUrl, allowOrigin);
+router.post(colorUrl, async function (ctx) {
+    allowSimpleOrigin(ctx);
+    const { lampId, color } = ctx.request.body;
+    log(`${ colorUrl } lampId:${ lampId }, color:${ color }`);
+    ctx.status = 204;
+});
+
+router.options(disconnectUrl, allowOrigin);
+router.post(disconnectUrl, async function (ctx) {
+    allowSimpleOrigin(ctx);
+    const { lampId } = ctx.request.body;
+    log(`${ disconnectUrl } lampId:${ lampId }`);
+    ctx.status = 204;
+});
 
 router.get(getLampsUrl, async function (ctx) {
     allowSimpleOrigin(ctx);
