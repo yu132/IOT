@@ -78,7 +78,6 @@ body {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 20px;
   padding-top: 60px;
   position: relative;
 }

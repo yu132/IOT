@@ -1,11 +1,8 @@
 <template>
-  <div>
-    DeviceManage
-    <div v-if="hasLamps">
-      <LampInfo v-for="lamp in lamps"  :lamp="lamp" :key="lamp.id" />
-    </div>
-    <NoLampPrompt v-else />
+  <div class="device-manage-wrapper">
     <AddLamp />
+    <LampInfo v-for="lamp in lamps" :lamp="lamp" :key="lamp.id" />
+    <NoLampPrompt v-if="noLamps" />
   </div>
 </template>
 
@@ -25,12 +22,16 @@ export default {
   },
   computed: {
     ...mapState(["lamps"]),
-    hasLamps() {
-      return this.lamps && this.lamps.length;
+    noLamps() {
+      return this.lamps === undefined || this.lamps.length === 0;
     },
   },
 };
 </script>
 
 <style>
+.device-manage-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
 </style>
