@@ -2,7 +2,7 @@
   <div>
     DeviceManage
     <div v-if="hasLamps">
-      <LampInfo v-for="lamp in lamps" :key="lamp.id" />
+      <LampInfo v-for="lamp in lamps"  :lamp="lamp" :key="lamp.id" />
     </div>
     <NoLampPrompt v-else />
     <AddLamp />
