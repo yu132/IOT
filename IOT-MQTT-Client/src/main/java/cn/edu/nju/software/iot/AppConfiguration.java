@@ -6,9 +6,12 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BiConsumer;
 
 import cn.edu.nju.software.iot.device.MockIOTDevice;
-import cn.edu.nju.software.iot.device.MockSensor;
+import cn.edu.nju.software.iot.device.sensor.BrightnessSensor;
+import cn.edu.nju.software.iot.device.sensor.MockSensor;
 import cn.edu.nju.software.iot.device.command.Command;
 import cn.edu.nju.software.iot.device.command.CommandMesgParser;
+import cn.edu.nju.software.iot.device.sensor.PressureSensor;
+import cn.edu.nju.software.iot.device.sensor.TemperatureSensor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -36,26 +39,11 @@ public class AppConfiguration {
     @Bean
     @ConditionalOnProperty(prefix = "device", name = "is-sensor",
         havingValue = "true")
-    public List<MockSensor> senosrs() {
+    public List<MockSensor> sensors() {
         List<MockSensor> sensors = new ArrayList<>();
-        sensors.add(new MockSensor() {
-
-            @Override
-            public String sensorName() {
-                return "temperature";
-            }
-
-            @Override
-            public String sensorId() {
-                return "t-1";
-            }
-
-            @Override
-            public String getInformation() {
-                ThreadLocalRandom r = ThreadLocalRandom.current();
-                return String.valueOf(r.nextInt(10) + 25);
-            }
-        });
+        sensors.add(new BrightnessSensor());
+        sensors.add(new TemperatureSensor());
+        sensors.add(new PressureSensor());
         return sensors;
     }
 

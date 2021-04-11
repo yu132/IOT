@@ -17,15 +17,74 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(prefix = "device", name = "is-light",
     havingValue = "true")
 public class MockLight {
+    boolean isOn, connected;
+    int brightness, color;
 
-    public void setBrightness(int brightness) {
+    public boolean setBrightness(int brightness) {
         if (brightness < 0 || brightness > 100) {
-            return;
+            System.out.println("灯的亮度值非法！");
+            return false;
         }
+        this.brightness = brightness;
         System.out.println("灯的亮度被调整为：" + brightness);
-        // changeBrightnessOfLight();//假定将调用该本地方法调整灯的亮度
+        return changeBrightnessOfLight(brightness);
     }
 
-    // public native void changeBrightnessOfLight();
+    public boolean setColor(int color) {
+        if (color < 0 || brightness > 10) {
+            System.out.println("灯的颜色值非法！");
+            return false;
+        }
+        this.color = color;
+        System.out.println("灯的颜色被调整为：" + color);
+        return changeColor(color);
+    }
 
+    public boolean setOn() {
+        if (isOn) {
+            System.out.println("灯已被打开！");
+            return false;
+        }
+        isOn = true;
+        System.out.println("灯成功被打开！");
+        return changeToOn();
+    }
+
+    public boolean setOff() {
+        if (!isOn) {
+            System.out.println("灯已被关闭！");
+            return false;
+        }
+        isOn = false;
+        System.out.println("灯成功被关闭！");
+        return changeToOff();
+    }
+
+    public boolean disconnect() {
+        if (!connected) {
+            System.out.println("灯已断开连接！");
+            return false;
+        }
+        connected = false;
+        System.out.println("灯成功断开连接！");
+        return changeToDisconnected();
+    }
+
+    public boolean isOn() {
+        return isOn;
+    }
+
+    public int getBrightness() {
+        return brightness;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public native boolean changeBrightnessOfLight(int brightness);
+    public native boolean changeColor(int color);
+    public native boolean changeToOn();
+    public native boolean changeToOff();
+    public native boolean changeToDisconnected();
 }
