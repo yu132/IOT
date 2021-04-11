@@ -15,10 +15,10 @@
       <div class="color-selector-wrapper" v-show="colorSelectorWrapperShow">
         <span
           class="color-selector-rect"
-          v-for="color in colors"
+          v-for="(color, index) in colors"
           :key="color"
           :style="{ backgroundColor: color }"
-          @click="() => onColorSelectorClick(color)"
+          @click="() => onColorSelectorClick(index)"
         />
       </div>
     </div>
@@ -119,17 +119,18 @@ export default {
       this.colorSelectorWrapperShow = false;
       document.removeEventListener("click", this.onDocumentClick);
     },
-    onColorSelectorClick(color) {
-      // TODO
-      console.log("onColorSelectorClick: ", color);
+    async onColorSelectorClick(colorIndex) {
+      await api.color(this.lamp.id, colorIndex);
+      this.lamp.color = colorIndex;
     },
-    onLightnessChange() {
-      // TODO
-      console.log("onLightnessChange", this.lightness);
+    async onLightnessChange() {
+      await api.brightness(this.lamp.id, this.lightness);
+      this.lamp.lightness = this.lightness;
     },
-    onRemoveDeviceClick() {
+    async onRemoveDeviceClick() {
       // TODO
-      console.log("onRemoveDeviceClick");
+      await api.disconnect(this.lamp.id);
+      this.lamp.isConnected = false;
     },
     async onOperateDeviceClick() {
       const { id, isOn } = this.lamp;
