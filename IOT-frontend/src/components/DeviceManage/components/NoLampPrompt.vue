@@ -1,5 +1,7 @@
 <template>
-  <div class="card">NoLampPrompt</div>
+  <div class="no-lamp-prompt-wrapper card">
+    <span>未发现设备，请点击按钮添加设备</span>
+  </div>
 </template>
 
 <script>
@@ -10,4 +12,11 @@ export default {
 </script>
 
 <style>
+.no-lamp-prompt-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px !important;
+  padding: 20px;
+}
 </style>
