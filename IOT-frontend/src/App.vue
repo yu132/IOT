@@ -64,15 +64,7 @@ body {
   color: #2c3e50;
 }
 #app::-webkit-scrollbar {
-  width: 10px;
-}
-#app::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: #00adff57;
-}
-#app::-webkit-scrollbar-track {
-  border-radius: 10px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  display: none;
 }
 #app > .one-page {
   width: 100%;
