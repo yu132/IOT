@@ -1,17 +1,17 @@
 <template>
-  <el-container id="app">
-    <el-header>
-      <Header />
-    </el-header>
-    <el-main>
+  <div id="app">
+    <Header />
+    <div class="one-page">
       <DeviceManage />
+    </div>
+    <div class="one-page">
       <IntelligentScene />
+    </div>
+    <div class="one-page">
       <DataChart />
-    </el-main>
-    <el-footer>
       <Footer />
-    </el-footer>
-  </el-container>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -41,12 +41,43 @@ export default {
 </script>
 
 <style>
+html,
+body {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+</style>
+
+<style scoped>
 #app {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  overflow-y: scroll;
+
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+#app::-webkit-scrollbar {
+  width: 10px;
+}
+#app::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #00adff57;
+}
+#app::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+#app > .one-page {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  padding-top: 60px;
 }
 </style>

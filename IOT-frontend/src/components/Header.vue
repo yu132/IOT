@@ -1,5 +1,5 @@
 <template>
-  <div>{{ title }}</div>
+  <div class="header-wrapper">{{ title }}</div>
 </template>
 
 <script>
@@ -14,5 +14,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.header-wrapper {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-left: 20px;
+  font-size: 28px;
+  font-weight: bolder;
+}
 </style>
