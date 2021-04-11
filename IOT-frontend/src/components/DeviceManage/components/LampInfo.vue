@@ -27,7 +27,7 @@ export default {
   props: {
     lamp: {
       type: Object,
-      require: true,
+      required: true,
     },
   },
   computed: {

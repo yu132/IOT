@@ -13,11 +13,11 @@ export default {
   props: {
     href: {
       type: String,
-      require: true,
+      required: true,
     },
     name: {
       type: String,
-      require: true,
+      required: true,
     },
   },
 };
