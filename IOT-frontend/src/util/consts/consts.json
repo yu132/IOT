@@ -4,6 +4,11 @@
         "yellow",
         "green"
     ],
+    "onUrl": "/on",
+    "offUrl": "/off",
+    "brightnessUrl": "/brightness",
+    "colorUrl": "/color",
+    "disconnectUrl": "/disconnect",
     "getDataChartInfoUrl": "/getDataChartInfoUrl",
     "getLampsUrl": "/getLamps",
     "serverHost": "localhost",
