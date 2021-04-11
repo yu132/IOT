@@ -8,12 +8,6 @@
 // 设备管理-添加灯泡设备
 export default {
   name: "DeviceManage_AddLamp",
-  props: {
-    lamp: {
-      type: Object,
-      required: true,
-    },
-  },
   methods: {
     onAddLampClick() {
       // TODO
