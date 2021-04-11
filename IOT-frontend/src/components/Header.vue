@@ -27,5 +27,9 @@ export default {
   padding-left: 20px;
   font-size: 28px;
   font-weight: bolder;
+  z-index: 1;
+  background: #f2f6fc;
+  border-bottom: thin solid #dcdfe6;
+  box-sizing: border-box;
 }
 </style>
