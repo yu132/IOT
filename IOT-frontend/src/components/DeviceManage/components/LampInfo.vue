@@ -7,10 +7,15 @@
     </div>
     <!-- TODO -->
     <div class="color-wrapper row-height">
-      <span> 颜色: {{ colorStr }} </span>
+      <span class="info-for"> 颜色：{{ colorStr }} </span>
     </div>
     <div class="lightness-wrapper row-height">
-      <span> lightness: {{ lamp.lightness }} </span>
+      <span class="info-for"> 亮度：</span>
+      <el-slider
+        v-model="lightness"
+        @change="onLightnessChange"
+        :style="{ flex: 1 }"
+      ></el-slider>
     </div>
     <div class="last-use-time-wrapper row-height">
       <span>
@@ -18,7 +23,6 @@
       </span>
     </div>
     <div class="footer row-height">
-      <!-- TODO -->
       <span class="is-connect-prompt">
         {{ isConnectedStr }}
       </span>
@@ -51,6 +55,11 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      lightness: this.lamp.lightness,
+    };
+  },
   computed: {
     colorStr() {
       return consts.colors[this.lamp.color];
@@ -81,6 +90,10 @@ export default {
     },
   },
   methods: {
+    onLightnessChange() {
+      // TODO
+      console.log("onLightnessChange");
+    },
     onRemoveDeviceClick() {
       // TODO
       console.log("onRemoveDeviceClick");
@@ -112,7 +125,15 @@ export default {
   height: 24px;
   box-sizing: border-box;
   line-height: 24px;
-  padding: 0 3px;
+  padding: 0 6px;
+}
+.row-height > .info-for {
+  margin-right: 10px;
+}
+.lightness-wrapper {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
 }
 .last-use-time-wrapper {
   position: absolute;
