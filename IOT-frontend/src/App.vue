@@ -54,6 +54,14 @@ body {
   box-sizing: border-box;
   margin: 0;
 }
+.clickable-span {
+  cursor: pointer;
+  opacity: 0.8;
+  font-weight: bold;
+}
+.clickable-span:hover {
+  opacity: 1;
+}
 </style>
 
 <style scoped>

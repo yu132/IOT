@@ -40,8 +40,10 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 10px;
-  min-width: 80px;
+  padding: 10px;
+  height: 100%;
+  box-sizing: border-box;
+  background: white;
 }
 .lamp-info-wrapper > i {
   font-size: 32px;

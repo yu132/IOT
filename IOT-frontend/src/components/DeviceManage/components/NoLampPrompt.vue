@@ -11,7 +11,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .no-lamp-prompt-wrapper {
   display: flex;
   align-items: center;
