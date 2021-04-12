@@ -1,5 +1,9 @@
 <template>
-  <div>ReturnHome</div>
+  <div class="card">
+    <i class="el-icon-s-home top-i" />
+    <span>归家</span>
+    <i class="el-icon-setting setting" />
+  </div>
 </template>
 
 <script>

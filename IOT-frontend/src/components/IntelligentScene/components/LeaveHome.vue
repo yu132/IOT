@@ -1,5 +1,9 @@
 <template>
-  <div>LeaveHome</div>
+  <div class="card">
+    <i class="el-icon-house top-i" />
+    <span>离家</span>
+    <i class="el-icon-setting setting" />
+  </div>
 </template>
 
 <script>

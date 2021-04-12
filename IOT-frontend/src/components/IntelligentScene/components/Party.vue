@@ -1,5 +1,9 @@
 <template>
-  <div>Party</div>
+  <div class="card">
+    <i class="el-icon-goblet-full top-i" />
+    <span>Party!</span>
+    <i class="el-icon-setting setting" />
+  </div>
 </template>
 
 <script>
