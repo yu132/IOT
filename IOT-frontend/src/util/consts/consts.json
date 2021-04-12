@@ -13,6 +13,7 @@
     "colorUrl": "/color",
     "disconnectUrl": "/disconnect",
     "connectUrl": "/connect",
+    "dataChartUrl": "https://www.baidu.com",
     "getDataChartInfoUrl": "/getDataChartInfoUrl",
     "getLampsUrl": "/getLamps",
     "serverHost": "localhost",

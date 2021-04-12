@@ -31,7 +31,14 @@ export default {
   methods: {
     ...mapMutations(["setMenuIndex"]),
     handleSelect(index) {
+      if (index === this.dataChartMenuIndex) {
+        this.jumpToDataChart();
+        return;
+      }
       this.setMenuIndex(index);
+    },
+    jumpToDataChart() {
+      window.location = consts.dataChartUrl;
     },
   },
 };
