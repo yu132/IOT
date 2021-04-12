@@ -1,5 +1,5 @@
 <template>
-  <div class="lamp-info-wrapper">
+  <div class="lamp-info-wrapper" :class="{ 'is-off': !lamp.isOn }">
     <i
       class="el-icon-table-lamp"
       :style="{
@@ -48,6 +48,9 @@ export default {
 .lamp-info-wrapper > .el-icon-table-lamp {
   font-size: 32px;
   filter: drop-shadow(2px 4px 6px black);
+}
+.is-off > .el-icon-table-lamp {
+  filter: grayscale(0.8);
 }
 .lamp-info-wrapper > span {
   font-size: 12px;

@@ -1,7 +1,7 @@
 <template>
   <div
     class="lamp-info-wrapper card"
-    :class="{ 'is-on': lamp.isOn, 'not-connected': !lamp.isConnected }"
+    :class="{ 'is-off': !lamp.isOn, 'not-connected': !lamp.isConnected }"
   >
     <div class="header row-height">
       <span>
@@ -242,6 +242,9 @@ export default {
   transform: translate(-50%, 50%);
   font-size: 60px;
   filter: drop-shadow(2px 4px 6px black);
+}
+.is-off .last-use-time-wrapper > .el-icon-table-lamp {
+  filter: grayscale(0.8);
 }
 .footer {
   font-size: 14px;
