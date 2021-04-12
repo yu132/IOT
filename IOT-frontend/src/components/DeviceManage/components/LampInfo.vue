@@ -1,5 +1,8 @@
 <template>
-  <div class="lamp-info-wrapper card" :class="{ 'is-on': lamp.isOn }">
+  <div
+    class="lamp-info-wrapper card"
+    :class="{ 'is-on': lamp.isOn, 'not-connected': !lamp.isConnected }"
+  >
     <div class="header row-height">
       <span>
         {{ lamp.name }}
@@ -27,6 +30,7 @@
       <el-slider
         v-model="lightness"
         :style="{ flex: 1 }"
+        :disabled="!lamp.isConnected"
         @change="onLightnessChange"
       ></el-slider>
     </div>
@@ -105,6 +109,9 @@ export default {
   },
   methods: {
     onColorRectClick() {
+      if (!this.lamp.isConnected) {
+        return;
+      }
       if (this.colorSelectorWrapperShow) {
         return;
       }
@@ -135,6 +142,9 @@ export default {
       this.lamp.isConnected = !isConnected;
     },
     async onTurnOnOffClick() {
+      if (!this.lamp.isConnected) {
+        return;
+      }
       const { id, isOn } = this.lamp;
       if (isOn) {
         await api.off(id);
@@ -231,12 +241,11 @@ export default {
 .footer > .turn-on-off-span {
   color: #409eff;
 }
-.clickable-span {
-  cursor: pointer;
-  opacity: 0.8;
-  font-weight: bold;
+.not-connected {
+  filter: brightness(0.8);
 }
-.clickable-span:hover {
-  opacity: 1;
+.not-connected .color-rect,
+.not-connected .turn-on-off-span {
+  cursor: not-allowed;
 }
 </style>

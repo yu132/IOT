@@ -1,6 +1,7 @@
 <template>
   <div class="footer-wrapper">
-    <LampMiniInfo v-for="lamp in lamps" :key="lamp.id" :lamp="lamp" />
+    <LampMiniInfo v-for="lamp in connectedLamps" :key="lamp.id" :lamp="lamp" />
+    <NoLampPrompt v-if="noConnectedLamps" />
   </div>
 </template>
 
@@ -8,14 +9,22 @@
 // 智慧场景-底部灯具信息组件
 import { mapState } from "vuex";
 import LampMiniInfo from "./components/LampMiniInfo";
+import NoLampPrompt from "./components/NoLampPrompt";
 
 export default {
   name: "IntelligentScene_LampInfoFooter",
   components: {
     LampMiniInfo,
+    NoLampPrompt,
   },
   computed: {
     ...mapState(["lamps"]),
+    connectedLamps() {
+      return this.lamps.filter((lamp) => lamp.isConnected);
+    },
+    noConnectedLamps() {
+      return this.connectedLamps.length === 0;
+    },
   },
 };
 </script>
