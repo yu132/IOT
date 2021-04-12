@@ -3,6 +3,7 @@ package cn.edu.nju.software.iot.device;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.nju.software.iot.device.sensor.MockSensor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -33,8 +34,36 @@ public class MockIOTDevice {
         return reports;
     }
 
-    public void setBrightnessOfLight(int brightness) {
-        light.setBrightness(brightness);
+    public boolean setBrightnessOfLight(int brightness) {
+        return light.setBrightness(brightness);
+    }
+
+    public boolean setColor(int color) {
+        return light.setColor(color);
+    }
+
+    public boolean setOn() {
+        return light.setOn();
+    }
+
+    public boolean setOff() {
+        return light.setOff();
+    }
+
+    public boolean disconnect() {
+        return light.disconnect();
+    }
+
+    public boolean isOn() {
+        return light.isOn();
+    }
+
+    public int getBrightness() {
+        return light.getBrightness();
+    }
+
+    public int getColor() {
+        return light.getColor();
     }
 
     public boolean isLight() {

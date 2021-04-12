@@ -1,7 +1,10 @@
 package cn.edu.nju.software.iot;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
+import cn.edu.nju.software.iot.cloud.netty.server.MessageBuffer;
 import cn.edu.nju.software.iot.shared.netty.server.ClientChannels;
 import cn.edu.nju.software.iot.shared.netty.server.NettyServer;
 import cn.hutool.core.codec.Base64;
@@ -38,10 +41,14 @@ public class CloudApplication implements CommandLineRunner {
         }).start();
 
         ThreadLocalRandom r = ThreadLocalRandom.current();
+        boolean b = false;
 
         while (true) {
             Thread.sleep(10000);
+            b = !b;
             writeMesg("testID1", "device-1", "brightness " + r.nextInt(101));
+            MessageBuffer.write("wlan " + (b ? 1 : 0) + " " + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
+            MessageBuffer.write("sound " + r.nextInt(100) + " " + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
         }
     }
 

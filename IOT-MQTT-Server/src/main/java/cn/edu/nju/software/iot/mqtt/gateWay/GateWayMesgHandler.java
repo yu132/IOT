@@ -1,5 +1,6 @@
 package cn.edu.nju.software.iot.mqtt.gateWay;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**  
@@ -15,11 +16,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class GateWayMesgHandler {
+    @Autowired
+    private IOTDeviceAuth iOTDeviceAuth;
 
     public void handleMesgFromCloud(String mesg) {
         // 处理从云端对网关控制的逻辑
-
-
+        String[] sp = mesg.split(" ");
+        switch (sp[0]) {
+            case "add":
+                iOTDeviceAuth.addDeviceId(sp[1]);
+                break;
+            case "remove":
+                iOTDeviceAuth.removeDeviceId(sp[1]);
+                break;
+            default:
+                System.out.println("未定义的命令" + sp[0]);
+        }
     }
 
 }
