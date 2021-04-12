@@ -4,7 +4,6 @@
     <div class="one-page">
       <DeviceManage v-show="menuIndex === deviceManageMenuIndex" />
       <IntelligentScene v-show="menuIndex === intelligentSceneMenuIndex" />
-      <DataChart v-show="menuIndex === dataChartMenuIndex" />
       <Footer />
     </div>
   </div>
@@ -16,7 +15,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import DeviceManage from "./components/DeviceManage";
 import IntelligentScene from "./components/IntelligentScene";
-import DataChart from "./components/DataChart";
 import { consts } from "./util/consts";
 
 export default {
@@ -25,7 +23,6 @@ export default {
     Header,
     DeviceManage,
     IntelligentScene,
-    DataChart,
     Footer,
   },
   computed: {

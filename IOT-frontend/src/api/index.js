@@ -6,8 +6,8 @@ const {
     brightnessUrl,
     colorUrl,
     disconnectUrl,
-    getLampsUrl,
-    getDataChartInfoUrl
+    getLampsUrl
+
 } = consts;
 
 const api = {
@@ -67,13 +67,6 @@ const api = {
     getLamps () {
         return instance.get(getLampsUrl);
     },
-    /**
-     * 获取数据图表信息
-     * @returns {Promise<Array<{ name: String, href: String }>>}
-     */
-    getDataChartInfo () {
-        return instance.get(getDataChartInfoUrl);
-    }
 };
 
 export { api };
