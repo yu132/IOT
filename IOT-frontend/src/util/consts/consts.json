@@ -12,6 +12,7 @@
     "brightnessUrl": "/brightness",
     "colorUrl": "/color",
     "disconnectUrl": "/disconnect",
+    "connectUrl": "/connect",
     "getDataChartInfoUrl": "/getDataChartInfoUrl",
     "getLampsUrl": "/getLamps",
     "serverHost": "localhost",

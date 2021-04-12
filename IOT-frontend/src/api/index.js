@@ -42,6 +42,15 @@ const api = {
         return instance.post(colorUrl, { lampId, color });
     },
     /**
+     * 连接设备
+     * TODO 后端暂无该接口
+     * @param {*} lampId 
+     */
+    connect (lampId) {
+        console.log(`[INFO] connect lampId: ${ lampId }`);
+        return Promise.resolve();
+    },
+    /**
      * 断开连接
      * @param {*} lampId 
      */

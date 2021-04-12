@@ -36,21 +36,16 @@
       </span>
     </div>
     <div class="footer row-height">
-      <span class="is-connect-prompt">
+      <span class="connect-prompt">
         {{ isConnectedStr }}
       </span>
       <span
-        class="remove-device clickable-span"
-        :style="{ color: '#F56C6C' }"
-        @click="onRemoveDeviceClick"
+        class="connect-control-span clickable-span"
+        @click="onConnectControlClick"
       >
-        移除设备
+        {{ connectControlStr }}
       </span>
-      <span
-        class="operate-device clickable-span"
-        :style="{ color: '#409EFF' }"
-        @click="onOperateDeviceClick"
-      >
+      <span class="turn-on-off-span clickable-span" @click="onTurnOnOffClick">
         {{ turnOnOffStr }}
       </span>
     </div>
@@ -101,6 +96,9 @@ export default {
           : `${dateCount}天前`;
       return `${dateStr} ${timeStr}`;
     },
+    connectControlStr() {
+      return this.lamp.isConnected ? "断开连接" : "连设设备";
+    },
     turnOnOffStr() {
       return this.lamp.isOn ? "关灯" : "开灯";
     },
@@ -127,12 +125,16 @@ export default {
       await api.brightness(this.lamp.id, this.lightness);
       this.lamp.lightness = this.lightness;
     },
-    async onRemoveDeviceClick() {
-      // TODO
-      await api.disconnect(this.lamp.id);
-      this.lamp.isConnected = false;
+    async onConnectControlClick() {
+      const { id, isConnected } = this.lamp;
+      if (isConnected) {
+        await api.disconnect(id);
+      } else {
+        await api.connect(id);
+      }
+      this.lamp.isConnected = !isConnected;
     },
-    async onOperateDeviceClick() {
+    async onTurnOnOffClick() {
       const { id, isOn } = this.lamp;
       if (isOn) {
         await api.off(id);
@@ -140,10 +142,6 @@ export default {
         await api.on(id);
       }
       this.lamp.isOn = !isOn;
-
-      this.updateLastUseTime();
-    },
-    updateLastUseTime() {
       this.lamp.lastUseTime = Date.now();
     },
   },
@@ -222,10 +220,16 @@ export default {
   bottom: 0;
   border-top: 1px solid #ebeef5;
 }
-.footer > .is-connect-prompt {
+.footer > .connect-prompt {
   font-size: 12px;
   float: left;
   opacity: 0.8;
+}
+.footer > .connect-control-span {
+  color: #f56c6c;
+}
+.footer > .turn-on-off-span {
+  color: #409eff;
 }
 .clickable-span {
   cursor: pointer;
