@@ -4,6 +4,7 @@
     <ReturnHome />
     <Party />
     <LeaveHome />
+    <LampInfoFooter />
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import LeaveHome from "./components/LeaveHome";
 import Party from "./components/Party";
 import ReturnHome from "./components/ReturnHome";
+import LampInfoFooter from "./components/LampInfoFooter";
 
 export default {
   name: "IntelligentScene",
@@ -19,6 +21,7 @@ export default {
     LeaveHome,
     Party,
     ReturnHome,
+    LampInfoFooter,
   },
 };
 </script>

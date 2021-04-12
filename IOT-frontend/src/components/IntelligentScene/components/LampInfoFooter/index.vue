@@ -5,12 +5,12 @@
 </template>
 
 <script>
-// 底部组件
+// 智慧场景-底部灯具信息组件
 import { mapState } from "vuex";
 import LampMiniInfo from "./components/LampMiniInfo";
 
 export default {
-  name: "Footer",
+  name: "IntelligentScene_LampInfoFooter",
   components: {
     LampMiniInfo,
   },

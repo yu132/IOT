@@ -4,7 +4,6 @@
     <div class="one-page">
       <DeviceManage v-show="menuIndex === deviceManageMenuIndex" />
       <IntelligentScene v-show="menuIndex === intelligentSceneMenuIndex" />
-      <Footer />
     </div>
   </div>
 </template>
@@ -12,7 +11,6 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import DeviceManage from "./components/DeviceManage";
 import IntelligentScene from "./components/IntelligentScene";
 import { consts } from "./util/consts";
@@ -23,7 +21,6 @@ export default {
     Header,
     DeviceManage,
     IntelligentScene,
-    Footer,
   },
   computed: {
     ...mapState(["menuIndex"]),

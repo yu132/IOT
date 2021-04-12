@@ -12,11 +12,11 @@
 </template>
 
 <script>
-// 底部组件-灯泡缩略信息
-import { consts } from "../../../util/consts";
+// 智慧场景-底部灯具信息组件-灯泡缩略信息
+import { consts } from "../../../../../util/consts";
 
 export default {
-  name: "DeviceManage_LampInfo",
+  name: "IntelligentScene_LampInfoFooter_LampMiniInfo",
   props: {
     lamp: {
       type: Object,
