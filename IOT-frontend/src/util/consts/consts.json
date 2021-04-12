@@ -15,6 +15,7 @@
     "connectUrl": "/connect",
     "dataChartUrl": "https://www.baidu.com",
     "getLampsUrl": "/getLamps",
+    "getLeaveHomeLampIdsUrl": "/getLeaveHomeLampIdsUrl",
     "serverHost": "localhost",
     "serverPort": 9000,
     "timeout": 10000

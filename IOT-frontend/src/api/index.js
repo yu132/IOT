@@ -6,8 +6,8 @@ const {
     brightnessUrl,
     colorUrl,
     disconnectUrl,
-    getLampsUrl
-
+    getLampsUrl,
+    getLeaveHomeLampIdsUrl
 } = consts;
 
 const api = {
@@ -67,6 +67,13 @@ const api = {
     getLamps () {
         return instance.get(getLampsUrl);
     },
+    /**
+     * 获取离家相关灯具ID列表
+     * @returns {Promise<Array<String>>}
+     */
+    getLeaveHomeLampIds () {
+        return instance.get(getLeaveHomeLampIdsUrl);
+    }
 };
 
 export { api };

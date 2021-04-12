@@ -7,6 +7,7 @@ const store = new Vuex.Store({
     state: {
         menuIndex: consts.deviceManageMenuIndex,
         lamps: [],
+        leaveHomeLampIds: []
     },
     mutations: {
         setMenuIndex (state, menuIndex) {
@@ -15,16 +16,24 @@ const store = new Vuex.Store({
         setLamps (state, lamps = []) {
             state.lamps = [...lamps];
         },
+        setLeaveHomeLampIds (state, leaveHomeLampIds = []) {
+            state.leaveHomeLampIds = [...leaveHomeLampIds];
+        },
     },
     actions: {
         async initStore ({ dispatch }) {
             Promise.all([
                 dispatch('initLamps'),
+                dispatch('initLeaveHomeLampIds'),
             ]);
         },
         async initLamps ({ commit }) {
             const { data } = await api.getLamps();
             commit('setLamps', data);
+        },
+        async initLeaveHomeLampIds ({ commit }) {
+            const { data } = await api.getLeaveHomeLampIds();
+            commit('setLeaveHomeLampIds', data);
         },
     }
 });
