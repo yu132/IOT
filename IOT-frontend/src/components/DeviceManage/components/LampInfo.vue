@@ -54,7 +54,7 @@
 
 <script>
 // 设备管理-灯泡信息
-import { consts } from "./../../../util/consts";
+import { consts } from "../../../util/consts";
 import { api } from "../../../api";
 export default {
   name: "DeviceManage_LampInfo",
