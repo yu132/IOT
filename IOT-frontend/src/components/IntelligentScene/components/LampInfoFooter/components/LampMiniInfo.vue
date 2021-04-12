@@ -28,7 +28,7 @@ export default {
       return consts.colors[this.lamp.color];
     },
     lampOpacity() {
-      return 0.5 + this.lamp.lightness * 0.005;
+      return 0.4 + this.lamp.lightness * 0.004;
     },
   },
 };
@@ -45,8 +45,9 @@ export default {
   box-sizing: border-box;
   background: white;
 }
-.lamp-info-wrapper > i {
+.lamp-info-wrapper > .el-icon-table-lamp {
   font-size: 32px;
+  filter: drop-shadow(2px 4px 6px black);
 }
 .lamp-info-wrapper > span {
   font-size: 12px;

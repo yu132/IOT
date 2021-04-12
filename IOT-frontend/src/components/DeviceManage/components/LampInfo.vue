@@ -12,7 +12,7 @@
       <span class="info-for">颜色：</span>
       <span
         class="color-rect"
-        :style="{ backgroundColor: colorStr }"
+        :style="{ backgroundColor: lampColor }"
         @click="onColorRectClick"
       />
       <div class="color-selector-wrapper" v-show="colorSelectorWrapperShow">
@@ -34,7 +34,14 @@
         @change="onLightnessChange"
       ></el-slider>
     </div>
-    <div class="last-use-time-wrapper row-height">
+    <div class="last-use-time-wrapper">
+      <i
+        class="el-icon-table-lamp"
+        :style="{
+          color: lampColor,
+          opacity: lampOpacity,
+        }"
+      />
       <span>
         {{ lastUseTimeStr }}
       </span>
@@ -76,8 +83,11 @@ export default {
     };
   },
   computed: {
-    colorStr() {
+    lampColor() {
       return this.colors[this.lamp.color];
+    },
+    lampOpacity() {
+      return 0.4 + this.lamp.lightness * 0.004;
     },
     isConnectedStr() {
       return this.lamp.isConnected ? "已连接" : "连接已断开";
@@ -101,7 +111,7 @@ export default {
       return `${dateStr} ${timeStr}`;
     },
     connectControlStr() {
-      return this.lamp.isConnected ? "断开连接" : "连设设备";
+      return this.lamp.isConnected ? "断开连接" : "连接设备";
     },
     turnOnOffStr() {
       return this.lamp.isOn ? "关灯" : "开灯";
@@ -215,19 +225,27 @@ export default {
   opacity: 1;
 }
 .last-use-time-wrapper {
-  position: absolute;
-  left: 0;
-  bottom: 24px;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: relative;
   text-align: right;
   color: #909399;
   font-size: 10px;
+  padding: 0 6px;
+}
+.last-use-time-wrapper > .el-icon-table-lamp {
+  position: absolute;
+  left: 25%;
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+  font-size: 60px;
+  filter: drop-shadow(2px 4px 6px black);
 }
 .footer {
   font-size: 14px;
   text-align: right;
-  position: absolute;
-  left: 0;
-  bottom: 0;
   border-top: 1px solid #ebeef5;
 }
 .footer > .connect-prompt {
