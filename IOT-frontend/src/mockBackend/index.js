@@ -7,7 +7,8 @@ const {
     colorUrl,
     disconnectUrl,
     getLampsUrl,
-    getLeaveHomeLampIdsUrl
+    getLeaveHomeLampIdsUrl,
+    getReturnHomeLampIdsUrl
 } = require('../util/consts/consts.json');
 
 // mock 服务器配置
@@ -18,7 +19,8 @@ const {
 // mock 数据
 const {
     mockLamps,
-    mockLeaveHomeLampIds
+    mockLeaveHomeLampIds,
+    mockReturnHomeLampIds
 } = require('./mockData');
 
 const log = console.log;
@@ -104,6 +106,11 @@ router.get(getLampsUrl, async function (ctx) {
 router.get(getLeaveHomeLampIdsUrl, async function (ctx) {
     allowSimpleOrigin(ctx);
     ctx.body = mockLeaveHomeLampIds;
+});
+
+router.get(getReturnHomeLampIdsUrl, async function (ctx) {
+    allowSimpleOrigin(ctx);
+    ctx.body = mockReturnHomeLampIds;
 });
 
 if (addMockServerDelayWait)
