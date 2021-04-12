@@ -8,7 +8,8 @@ const store = new Vuex.Store({
         menuIndex: consts.deviceManageMenuIndex,
         lamps: [],
         leaveHomeLampIds: [],
-        returnHomeLampIds: []
+        returnHomeLampIds: [],
+        partyLampIds: []
     },
     mutations: {
         setMenuIndex (state, menuIndex) {
@@ -23,6 +24,9 @@ const store = new Vuex.Store({
         setReturnHomeLampIds (state, returnHomeLampIds = []) {
             state.returnHomeLampIds = [...returnHomeLampIds];
         },
+        setPartyLampIds (state, partyLampIds = []) {
+            state.partyLampIds = [...partyLampIds];
+        },
     },
     actions: {
         async initStore ({ dispatch }) {
@@ -30,6 +34,7 @@ const store = new Vuex.Store({
                 dispatch('initLamps'),
                 dispatch('initLeaveHomeLampIds'),
                 dispatch('initReturnHomeLampIds'),
+                dispatch('initPartyLampIds'),
             ]);
         },
         async initLamps ({ commit }) {
@@ -43,6 +48,10 @@ const store = new Vuex.Store({
         async initReturnHomeLampIds ({ commit }) {
             const { data } = await api.getReturnHomeLampIds();
             commit('setReturnHomeLampIds', data);
+        },
+        async initPartyLampIds ({ commit }) {
+            const { data } = await api.getPartyLampIds();
+            commit('setPartyLampIds', data);
         },
     }
 });

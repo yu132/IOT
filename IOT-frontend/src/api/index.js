@@ -8,7 +8,8 @@ const {
     disconnectUrl,
     getLampsUrl,
     getLeaveHomeLampIdsUrl,
-    getReturnHomeLampIdsUrl
+    getReturnHomeLampIdsUrl,
+    getPartyLampIdsUrl
 } = consts;
 
 const api = {
@@ -81,6 +82,13 @@ const api = {
      */
     getReturnHomeLampIds () {
         return instance.get(getReturnHomeLampIdsUrl);
+    },
+    /**
+     * 获取Party相关灯具ID列表
+     * @returns {Promise<Array<String>>}
+     */
+    getPartyLampIds () {
+        return instance.get(getPartyLampIdsUrl);
     }
 };
 
