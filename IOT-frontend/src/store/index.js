@@ -1,16 +1,17 @@
 // Vuex store
 import Vuex from 'vuex';
 import { api } from '../api';
+import { consts } from '../util/consts';
 
 const store = new Vuex.Store({
     state: {
-        title: 'IOT 设备管理',
+        menuIndex: consts.deviceManageMenuIndex,
         lamps: [],
         dataChartInfos: []
     },
     mutations: {
-        setTitle (state, title) {
-            state.title = title;
+        setMenuIndex (state, menuIndex) {
+            state.menuIndex = menuIndex;
         },
         setLamps (state, lamps = []) {
             state.lamps = [...lamps];

@@ -1,4 +1,7 @@
 {
+    "deviceManageMenuIndex": "0",
+    "intelligentSceneMenuIndex": "1",
+    "dataChartMenuIndex": "2",
     "colors": [
         "red",
         "yellow",

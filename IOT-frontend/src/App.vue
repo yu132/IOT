@@ -2,25 +2,22 @@
   <div id="app">
     <Header />
     <div class="one-page">
-      <DeviceManage />
-    </div>
-    <div class="one-page">
-      <IntelligentScene />
-    </div>
-    <div class="one-page">
-      <DataChart />
+      <DeviceManage v-show="menuIndex === deviceManageMenuIndex" />
+      <IntelligentScene v-show="menuIndex === intelligentSceneMenuIndex" />
+      <DataChart v-show="menuIndex === dataChartMenuIndex" />
       <Footer />
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import DeviceManage from "./components/DeviceManage";
 import IntelligentScene from "./components/IntelligentScene";
 import DataChart from "./components/DataChart";
+import { consts } from "./util/consts";
 
 export default {
   name: "App",
@@ -30,6 +27,21 @@ export default {
     IntelligentScene,
     DataChart,
     Footer,
+  },
+  computed: {
+    ...mapState(["menuIndex"]),
+  },
+  data() {
+    const {
+      deviceManageMenuIndex,
+      intelligentSceneMenuIndex,
+      dataChartMenuIndex,
+    } = consts;
+    return {
+      deviceManageMenuIndex,
+      intelligentSceneMenuIndex,
+      dataChartMenuIndex,
+    };
   },
   methods: {
     ...mapActions(["initStore"]),
@@ -52,6 +64,8 @@ body {
 
 <style scoped>
 #app {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -70,7 +84,6 @@ body {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding-top: 60px;
   position: relative;
 }
 </style>
