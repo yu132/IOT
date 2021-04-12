@@ -11,6 +11,7 @@ export default {
   methods: {
     onAddLampClick() {
       // TODO
+      this.$message("这个还没有做完");
       console.log("onAddLampClick");
     },
   },
