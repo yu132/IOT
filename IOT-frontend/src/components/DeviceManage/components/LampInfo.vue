@@ -213,7 +213,7 @@ export default {
   position: absolute;
   right: 10px;
   transform: translateY(24px);
-  z-index: 1;
+  z-index: 2000;
 }
 .color-selector-wrapper > .color-selector-rect {
   width: 25px;
