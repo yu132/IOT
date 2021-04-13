@@ -1,7 +1,7 @@
 <template>
-  <div class="card">
+  <div class="card" :class="{ 'is-party': isParty }">
     <i class="el-icon-goblet-full top-i" @click="onPartyClick" />
-    <span>Party!</span>
+    <span>{{ title }}</span>
     <i class="el-icon-setting setting" @click="onSettingClick" />
     <CheckBoxDialog
       :ref="dialogRef"
@@ -24,7 +24,10 @@ export default {
     CheckBoxDialog,
   },
   computed: {
-    ...mapState(["lamps", "partyLampIds"]),
+    ...mapState(["lamps", "partyLampIds", "isParty"]),
+    title() {
+      return this.isParty ? "Party~~~" : "开始 Party!";
+    },
   },
   data() {
     return {
@@ -33,9 +36,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["updatePartyLampIds"]),
+    ...mapActions(["updatePartyLampIds", "startParty", "endParty"]),
     onPartyClick() {
-      // TODO
+      if (this.isParty) {
+        this.endParty();
+      } else {
+        this.startParty();
+      }
     },
     onSettingClick() {
       this.$refs[this.dialogRef].showDialog();
@@ -45,4 +52,17 @@ export default {
 </script>
 
 <style>
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.is-party > .top-i {
+  animation: rotate 2s linear infinite;
+  color: #409eff;
+  box-shadow: inset 0 2px 12px 0 rgb(0 0 0 / 20%) !important;
+}
 </style>

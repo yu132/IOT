@@ -2,6 +2,12 @@
 import Vuex from 'vuex';
 import { api } from '../api';
 import { consts } from '../util/consts';
+import {
+    getRandomColorIndex,
+    getRandomBoolean
+} from '../util/random';
+
+let partyIntervalId = undefined;
 
 const store = new Vuex.Store({
     state: {
@@ -98,6 +104,45 @@ const store = new Vuex.Store({
         async initIsParty ({ commit }) {
             const { data } = await api.getIsParty();
             commit('setIsParty', data);
+        },
+        async startParty ({ state, commit }) {
+            const { lamps, partyLampIds } = state;
+            partyIntervalId = setInterval(async () => {
+                for (const lamp of lamps)
+                {
+                    const { color, id } = lamp;
+                    if (partyLampIds.indexOf(id) >= 0)
+                    {
+                        const changeOnOff = getRandomBoolean();
+                        if (changeOnOff)
+                        {
+                            lamp.isOn = !lamp.isOn;
+                            if (lamp.isOn)
+                            {
+                                await api.on(id);
+                            } else
+                            {
+                                await api.off(id);
+                            }
+                            const newColor = getRandomColorIndex();
+                            if (color !== newColor)
+                            {
+                                lamp.color = newColor;
+                                await api.color(id, newColor);
+                            }
+                        }
+                    }
+                }
+            }, consts.partyIntervalTimeout);
+            const newIsParty = true;
+            commit('setIsParty', newIsParty);
+            await api.setIsParty(newIsParty);
+        },
+        async endParty ({ commit }) {
+            clearInterval(partyIntervalId);
+            const newIsParty = false;
+            commit('setIsParty', newIsParty);
+            await api.setIsParty(newIsParty);
         }
     }
 });

@@ -20,6 +20,7 @@
     "getPartyLampIdsUrl": "/getPartyLampIdsUrl",
     "getIsPartyUrl": "/getIsPartyUrl",
     "setIsPartyUrl": "/setIsPartyUrl",
+    "partyIntervalTimeout": 1000,
     "serverHost": "localhost",
     "serverPort": 9000,
     "timeout": 10000
