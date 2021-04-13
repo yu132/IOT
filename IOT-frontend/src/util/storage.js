@@ -13,17 +13,17 @@ function resetData () {
     {
         setLampsData(mockLamps);
     }
-    if (getPartyLampIds() === null)
+    if (getPartyLampIdsData() === null)
     {
-        setPartyLampIds(mockPartyLampIds);
+        setPartyLampIdsData(mockPartyLampIds);
     }
-    if (getLeaveHomeLampIds() === null)
+    if (getLeaveHomeLampIdsData() === null)
     {
-        setLeaveHomeLampIds(mockLeaveHomeLampIds);
+        setLeaveHomeLampIdsData(mockLeaveHomeLampIds);
     }
-    if (getReturnHomeLampIds() === null)
+    if (getReturnHomeLampIdsData() === null)
     {
-        setReturnHomeLampIds(mockReturnHomeLampIds);
+        setReturnHomeLampIdsData(mockReturnHomeLampIds);
     }
 }
 
@@ -37,29 +37,29 @@ function getLampsData () {
 }
 
 const leaveHomeLampIdsKey = `${ keyPre }_leaveHomeLampIds`;
-function setLeaveHomeLampIds (lampIds) {
+function setLeaveHomeLampIdsData (lampIds) {
     localStorage.setItem(leaveHomeLampIdsKey, JSON.stringify(lampIds));
 }
 
-function getLeaveHomeLampIds () {
+function getLeaveHomeLampIdsData () {
     return JSON.parse(localStorage.getItem(leaveHomeLampIdsKey));
 }
 
 const partyLampIdsKey = `${ keyPre }_partyLampIds`;
-function setPartyLampIds (lampIds) {
+function setPartyLampIdsData (lampIds) {
     localStorage.setItem(partyLampIdsKey, JSON.stringify(lampIds));
 }
 
-function getPartyLampIds () {
+function getPartyLampIdsData () {
     return JSON.parse(localStorage.getItem(partyLampIdsKey));
 }
 
 const returnHomeLampIdsKey = `${ keyPre }_returnHomeLampIds`;
-function setReturnHomeLampIds (lampIds) {
+function setReturnHomeLampIdsData (lampIds) {
     localStorage.setItem(returnHomeLampIdsKey, JSON.stringify(lampIds));
 }
 
-function getReturnHomeLampIds () {
+function getReturnHomeLampIdsData () {
     return JSON.parse(localStorage.getItem(returnHomeLampIdsKey));
 }
 
@@ -67,10 +67,10 @@ export {
     resetData,
     setLampsData,
     getLampsData,
-    setLeaveHomeLampIds,
-    getLeaveHomeLampIds,
-    setPartyLampIds,
-    getPartyLampIds,
-    setReturnHomeLampIds,
-    getReturnHomeLampIds
+    setLeaveHomeLampIdsData,
+    getLeaveHomeLampIdsData,
+    setPartyLampIdsData,
+    getPartyLampIdsData,
+    setReturnHomeLampIdsData,
+    getReturnHomeLampIdsData
 };
