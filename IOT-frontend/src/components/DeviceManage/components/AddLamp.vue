@@ -20,7 +20,7 @@ export default {
 
 <style>
 .add-lamp-wrapper {
-  width: 140px;
+  width: 180px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -36,6 +36,7 @@ export default {
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
+  padding: 80px 0;
 }
 .device-manage-wrapper > .card {
   height: 200px;
