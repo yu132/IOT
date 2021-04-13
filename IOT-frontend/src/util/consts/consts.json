@@ -23,5 +23,6 @@
     "partyIntervalTimeout": 1000,
     "serverHost": "localhost",
     "serverPort": 9000,
-    "timeout": 10000
+    "timeout": 10000,
+    "useMock": true
 }

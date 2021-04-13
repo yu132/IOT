@@ -1,5 +1,19 @@
 import { instance } from '../util/request';
 import { consts } from '../util/consts';
+import {
+    resetData,
+    setLampsData,
+    getLampsData,
+    // setLeaveHomeLampIdsData,
+    getLeaveHomeLampIdsData,
+    // setPartyLampIdsData,
+    getPartyLampIdsData,
+    // setReturnHomeLampIdsData,
+    getReturnHomeLampIdsData,
+    setIsPartyData,
+    getIsPartyData
+} from '../util/storage';
+
 const {
     onUrl,
     offUrl,
@@ -11,10 +25,12 @@ const {
     getReturnHomeLampIdsUrl,
     getPartyLampIdsUrl,
     getIsPartyUrl,
-    setIsPartyUrl
+    setIsPartyUrl,
+    useMock
 } = consts;
 
-const api = {
+// TODO 添加更新智慧场景相关灯具列表接口
+let api = {
     /**
      * 打开灯具
      * @param {String} lampId 
@@ -63,8 +79,8 @@ const api = {
     },
     /**
      * 获取灯泡数据
-     * TODO 添加更多灯泡属性
-     * color 备选颜色常量
+     * TODO 确认颜色为 下标 还是 颜色值
+     * color 为备选颜色常量
      * 亮度 0-100
      * @returns {Promise<Array<{ name: String, id: String, isOn: Boolean, color: String, brightness: Number, isConnected: Boolean, lastUseTime: Number }>>}
      */
@@ -108,5 +124,86 @@ const api = {
         return instance.post(setIsPartyUrl, { isParty });
     }
 };
+
+function updateLampTemplate (lampId, updateLampCallback) {
+    const lamps = getLampsData();
+    for (const lamp of lamps)
+    {
+        if (lamp.id === lampId)
+        {
+            updateLampCallback(lamp);
+        }
+    }
+    setLampsData(lamps);
+}
+
+const mockApi = {
+    on (lampId) {
+        updateLampTemplate(lampId, lamp => {
+            lamp.isOn = true;
+        });
+        return Promise.resolve();
+    },
+    off (lampId) {
+        updateLampTemplate(lampId, lamp => {
+            lamp.isOn = false;
+        });
+        return Promise.resolve();
+    },
+    brightness (lampId, brightness) {
+        updateLampTemplate(lampId, lamp => {
+            lamp.brightness = brightness;
+        });
+        return Promise.resolve();
+    },
+    color (lampId, color) {
+        updateLampTemplate(lampId, lamp => {
+            lamp.color = color;
+        });
+        return Promise.resolve();
+    },
+    connect (lampId) {
+        updateLampTemplate(lampId, lamp => {
+            lamp.isConnected = true;
+        });
+        return Promise.resolve();
+    },
+    disconnect (lampId) {
+        updateLampTemplate(lampId, lamp => {
+            lamp.isConnected = false;
+        });
+        return Promise.resolve();
+    },
+    getLamps () {
+        const data = getLampsData();
+        return Promise.resolve({ data });
+    },
+    getLeaveHomeLampIds () {
+        const data = getLeaveHomeLampIdsData();
+        return Promise.resolve({ data });
+    },
+    getReturnHomeLampIds () {
+        const data = getReturnHomeLampIdsData();
+        return Promise.resolve({ data });
+    },
+    getPartyLampIds () {
+        const data = getPartyLampIdsData();
+        return Promise.resolve({ data });
+    },
+    getIsParty () {
+        const data = getIsPartyData();
+        return Promise.resolve({ data });
+    },
+    setIsParty (isParty) {
+        setIsPartyData(isParty);
+        return Promise.resolve();
+    }
+};
+
+if (useMock)
+{
+    resetData();
+    api = mockApi;
+}
 
 export { api };
