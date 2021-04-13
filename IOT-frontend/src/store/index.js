@@ -50,6 +50,17 @@ const store = new Vuex.Store({
             console.log(`updateLeaveHomeLampIds newIds:${ newIds }`);
             commit('setLeaveHomeLampIds', newIds);
         },
+        async leaveHome ({ state }) {
+            const { lamps, leaveHomeLampIds } = state;
+            await Promise.all(leaveHomeLampIds.map(id => api.off(id)));
+            for (const lamp of lamps)
+            {
+                if (leaveHomeLampIds.indexOf(lamp.id) >= 0)
+                {
+                    lamp.isOn = false;
+                }
+            }
+        },
         async initReturnHomeLampIds ({ commit }) {
             const { data } = await api.getReturnHomeLampIds();
             commit('setReturnHomeLampIds', data);
@@ -58,6 +69,17 @@ const store = new Vuex.Store({
             // TODO 后端请求
             console.log(`updateReturnHomeLampIds newIds:${ newIds }`);
             commit('setReturnHomeLampIds', newIds);
+        },
+        async returnHome ({ state }) {
+            const { lamps, returnHomeLampIds } = state;
+            await Promise.all(returnHomeLampIds.map(id => api.on(id)));
+            for (const lamp of lamps)
+            {
+                if (returnHomeLampIds.indexOf(lamp.id) >= 0)
+                {
+                    lamp.isOn = true;
+                }
+            }
         },
         async initPartyLampIds ({ commit }) {
             const { data } = await api.getPartyLampIds();

@@ -33,9 +33,9 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["updateLeaveHomeLampIds"]),
+    ...mapActions(["updateLeaveHomeLampIds", "leaveHome"]),
     onLeaveHomeClick() {
-      // TODO
+      this.leaveHome();
     },
     onSettingClick() {
       this.$refs[this.dialogRef].showDialog();
