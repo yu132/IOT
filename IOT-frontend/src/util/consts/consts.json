@@ -18,6 +18,8 @@
     "getLeaveHomeLampIdsUrl": "/getLeaveHomeLampIdsUrl",
     "getReturnHomeLampIdsUrl": "/getReturnHomeLampIdsUrl",
     "getPartyLampIdsUrl": "/getPartyLampIdsUrl",
+    "getIsPartyUrl": "/getIsPartyUrl",
+    "setIsPartyUrl": "/setIsPartyUrl",
     "serverHost": "localhost",
     "serverPort": 9000,
     "timeout": 10000

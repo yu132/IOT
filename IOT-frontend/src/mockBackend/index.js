@@ -9,7 +9,9 @@ const {
     getLampsUrl,
     getLeaveHomeLampIdsUrl,
     getReturnHomeLampIdsUrl,
-    getPartyLampIdsUrl
+    getPartyLampIdsUrl,
+    getIsPartyUrl,
+    setIsPartyUrl
 } = require('../util/consts/consts.json');
 
 // mock 服务器配置
@@ -118,6 +120,19 @@ router.get(getReturnHomeLampIdsUrl, async function (ctx) {
 router.get(getPartyLampIdsUrl, async function (ctx) {
     allowSimpleOrigin(ctx);
     ctx.body = mockPartyLampIds;
+});
+
+router.get(getIsPartyUrl, async function (ctx) {
+    allowSimpleOrigin(ctx);
+    ctx.body = false;
+});
+
+router.options(setIsPartyUrl, allowOrigin);
+router.post(setIsPartyUrl, async function (ctx) {
+    allowSimpleOrigin(ctx);
+    const { isParty } = ctx.request.body;
+    log(`${ setIsPartyUrl } isParty:${ isParty }`);
+    ctx.status = 204;
 });
 
 if (addMockServerDelayWait)

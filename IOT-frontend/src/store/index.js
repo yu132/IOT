@@ -9,7 +9,8 @@ const store = new Vuex.Store({
         lamps: [],
         leaveHomeLampIds: [],
         returnHomeLampIds: [],
-        partyLampIds: []
+        partyLampIds: [],
+        isParty: false
     },
     mutations: {
         setMenuIndex (state, menuIndex) {
@@ -27,6 +28,9 @@ const store = new Vuex.Store({
         setPartyLampIds (state, partyLampIds = []) {
             state.partyLampIds = [...partyLampIds];
         },
+        setIsParty (state, isParty) {
+            state.isParty = isParty;
+        }
     },
     actions: {
         async initStore ({ dispatch }) {
@@ -35,6 +39,7 @@ const store = new Vuex.Store({
                 dispatch('initLeaveHomeLampIds'),
                 dispatch('initReturnHomeLampIds'),
                 dispatch('initPartyLampIds'),
+                dispatch('initIsParty')
             ]);
         },
         async initLamps ({ commit }) {
@@ -90,6 +95,10 @@ const store = new Vuex.Store({
             console.log(`updatePartyLampIds newIds:${ newIds }`);
             commit('setPartyLampIds', newIds);
         },
+        async initIsParty ({ commit }) {
+            const { data } = await api.getIsParty();
+            commit('setIsParty', data);
+        }
     }
 });
 

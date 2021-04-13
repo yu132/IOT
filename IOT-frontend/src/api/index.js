@@ -9,20 +9,22 @@ const {
     getLampsUrl,
     getLeaveHomeLampIdsUrl,
     getReturnHomeLampIdsUrl,
-    getPartyLampIdsUrl
+    getPartyLampIdsUrl,
+    getIsPartyUrl,
+    setIsPartyUrl
 } = consts;
 
 const api = {
     /**
      * 打开灯具
-     * @param {*} lampId 
+     * @param {String} lampId 
      */
     on (lampId) {
         return instance.post(onUrl, { lampId });
     },
     /**
      * 关闭灯具
-     * @param {*} lampId 
+     * @param {String} lampId 
      */
     off (lampId) {
         return instance.post(offUrl, { lampId });
@@ -46,7 +48,7 @@ const api = {
     /**
      * 连接设备
      * TODO 后端暂无该接口
-     * @param {*} lampId 
+     * @param {String} lampId 
      */
     connect (lampId) {
         console.log(`[INFO] connect lampId: ${ lampId }`);
@@ -54,7 +56,7 @@ const api = {
     },
     /**
      * 断开连接
-     * @param {*} lampId 
+     * @param {String} lampId 
      */
     disconnect (lampId) {
         return instance.post(disconnectUrl, { lampId });
@@ -89,6 +91,21 @@ const api = {
      */
     getPartyLampIds () {
         return instance.get(getPartyLampIdsUrl);
+    },
+    /**
+     * 获取Party模式开启状态
+     * @returns {Promise<Boolean>}
+     */
+    getIsParty () {
+        return instance.get(getIsPartyUrl);
+    },
+    /**
+     * 设置Party模式开启状态
+     * @param {Boolean} isParty 
+     * @returns {Promise<Boolean>}
+     */
+    setIsParty (isParty) {
+        return instance.post(setIsPartyUrl, { isParty });
     }
 };
 
