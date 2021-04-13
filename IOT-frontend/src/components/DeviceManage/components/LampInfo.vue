@@ -170,14 +170,11 @@ export default {
       if (!this.lamp.isConnected) {
         return;
       }
-      const { id, isOn } = this.lamp;
-      if (isOn) {
-        await api.off(id);
+      if (this.lamp.isOn) {
+        await api.off(this.lamp);
       } else {
-        await api.on(id);
+        await api.on(this.lamp);
       }
-      this.lamp.isOn = !isOn;
-      this.lamp.lastUseTime = Date.now();
     },
   },
 };

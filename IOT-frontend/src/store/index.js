@@ -63,14 +63,8 @@ const store = new Vuex.Store({
         },
         async leaveHome ({ state }) {
             const { lamps, leaveHomeLampIds } = state;
-            await Promise.all(leaveHomeLampIds.map(id => api.off(id)));
-            for (const lamp of lamps)
-            {
-                if (leaveHomeLampIds.indexOf(lamp.id) >= 0)
-                {
-                    lamp.isOn = false;
-                }
-            }
+            const leaveHomeLamps = lamps.filter(lamp => leaveHomeLampIds.indexOf(lamp.id) >= 0);
+            await Promise.all(leaveHomeLamps.map(lamp => api.off(lamp)));
         },
         async initReturnHomeLampIds ({ commit }) {
             const { data } = await api.getReturnHomeLampIds();
@@ -83,14 +77,8 @@ const store = new Vuex.Store({
         },
         async returnHome ({ state }) {
             const { lamps, returnHomeLampIds } = state;
-            await Promise.all(returnHomeLampIds.map(id => api.on(id)));
-            for (const lamp of lamps)
-            {
-                if (returnHomeLampIds.indexOf(lamp.id) >= 0)
-                {
-                    lamp.isOn = true;
-                }
-            }
+            const returnHomeLamps = lamps.filter(lamp => returnHomeLampIds.indexOf(lamp.id) >= 0);
+            await Promise.all(returnHomeLamps.map(lamp => api.on(lamp)));
         },
         async initPartyLampIds ({ commit }) {
             const { data } = await api.getPartyLampIds();
@@ -119,10 +107,10 @@ const store = new Vuex.Store({
                             lamp.isOn = !lamp.isOn;
                             if (lamp.isOn)
                             {
-                                await api.on(id);
+                                await api.on(lamp);
                             } else
                             {
-                                await api.off(id);
+                                await api.off(lamp);
                             }
                             const newColor = getRandomColorIndex();
                             if (color !== newColor)

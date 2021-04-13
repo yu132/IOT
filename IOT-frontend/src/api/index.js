@@ -33,17 +33,21 @@ const {
 let api = {
     /**
      * 打开灯具
-     * @param {String} lampId 
+     * @param {{ name: String, id: String, isOn: Boolean, color: String, brightness: Number, isConnected: Boolean, lastUseTime: Number }} lamp 
      */
-    on (lampId) {
-        return instance.post(onUrl, { lampId });
+    on (lamp) {
+        lamp.isOn = true;
+        lamp.lastUseTime = Date.now();
+        return instance.post(onUrl, { lampId: lamp.id });
     },
     /**
      * 关闭灯具
-     * @param {String} lampId 
+     * @param {{ name: String, id: String, isOn: Boolean, color: String, brightness: Number, isConnected: Boolean, lastUseTime: Number }} lamp 
      */
-    off (lampId) {
-        return instance.post(offUrl, { lampId });
+    off (lamp) {
+        lamp.isOn = false;
+        lamp.lastUseTime = Date.now();
+        return instance.post(offUrl, { lampId: lamp.id });
     },
     /**
      * 调整亮度
@@ -138,15 +142,23 @@ function updateLampTemplate (lampId, updateLampCallback) {
 }
 
 const mockApi = {
-    on (lampId) {
-        updateLampTemplate(lampId, lamp => {
-            lamp.isOn = true;
+    on (lamp) {
+        const now = Date.now();
+        lamp.isOn = true;
+        lamp.lastUseTime = now;
+        updateLampTemplate(lamp.id, l => {
+            l.isOn = true;
+            l.lastUseTime = now;
         });
         return Promise.resolve();
     },
-    off (lampId) {
-        updateLampTemplate(lampId, lamp => {
-            lamp.isOn = false;
+    off (lamp) {
+        const now = Date.now();
+        lamp.isOn = false;
+        lamp.lastUseTime = now;
+        updateLampTemplate(lamp.id, l => {
+            l.isOn = false;
+            l.lastUseTime = now;
         });
         return Promise.resolve();
     },
