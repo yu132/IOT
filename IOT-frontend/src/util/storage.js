@@ -68,13 +68,13 @@ function getReturnHomeLampIdsData () {
     return JSON.parse(localStorage.getItem(returnHomeLampIdsKey));
 }
 
-const isPartyKey = `${ keyPre }_returnHomeLampIds`;
+const isPartyKey = `${ keyPre }_isParty`;
 function getIsPartyData (isParty) {
-    localStorage.setItem(isPartyKey, JSON.stringify(isParty));
+    localStorage.setItem(isPartyKey, isParty ? '1' : '0');
 }
 
 function setIsPartyData () {
-    return JSON.parse(isPartyKey.getItem(returnHomeLampIdsKey));
+    return isPartyKey.getItem(returnHomeLampIdsKey) === '1';
 }
 
 export {
