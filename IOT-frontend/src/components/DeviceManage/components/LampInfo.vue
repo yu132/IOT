@@ -40,6 +40,7 @@
         :style="{
           color: lampColor,
           opacity: lampOpacity,
+          filter: lampFilter,
         }"
       />
       <span>
@@ -88,6 +89,11 @@ export default {
     },
     lampOpacity() {
       return 0.4 + this.lamp.lightness * 0.004;
+    },
+    lampFilter() {
+      return this.lamp.isOn
+        ? `drop-shadow(2px 4px 6px ${this.lampColor})`
+        : `brightness(0.5)`;
     },
     isConnectedStr() {
       return this.lamp.isConnected ? "已连接" : "连接已断开";
@@ -241,10 +247,6 @@ export default {
   bottom: 50%;
   transform: translate(-50%, 50%);
   font-size: 60px;
-  filter: drop-shadow(2px 4px 6px black);
-}
-.is-off .last-use-time-wrapper > .el-icon-table-lamp {
-  filter: grayscale(0.8);
 }
 .footer {
   font-size: 14px;

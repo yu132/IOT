@@ -5,6 +5,7 @@
       :style="{
         color: lampColor,
         opacity: lampOpacity,
+        filter: lampFilter,
       }"
     />
     <span>{{ lamp.name }}</span>
@@ -29,6 +30,11 @@ export default {
     },
     lampOpacity() {
       return 0.4 + this.lamp.lightness * 0.004;
+    },
+    lampFilter() {
+      return this.lamp.isOn
+        ? `drop-shadow(2px 4px 6px ${this.lampColor})`
+        : `brightness(0.5)`;
     },
   },
 };
