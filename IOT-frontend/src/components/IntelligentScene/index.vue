@@ -48,8 +48,12 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
   position: relative;
+}
+.intelligent-scene-wrapper > .card > span {
+  font-size: 28px;
+  height: 42px;
+  line-height: 42px;
 }
 .intelligent-scene-wrapper > .card > .top-i {
   border-radius: 50%;
@@ -62,6 +66,7 @@ export default {
   margin-bottom: 32px;
 }
 .intelligent-scene-wrapper > .card > .setting {
+  font-size: 32px;
   position: absolute;
   bottom: 32px;
 }
