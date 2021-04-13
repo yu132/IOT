@@ -4,7 +4,7 @@
         "id": "HT00000001",
         "isOn": false,
         "color": 0,
-        "lightness": 0,
+        "brightness": 0,
         "isConnected": true,
         "lastUseTime": 1618299157443
     },
@@ -13,7 +13,7 @@
         "id": "HT00000002",
         "isOn": false,
         "color": 1,
-        "lightness": 0,
+        "brightness": 0,
         "isConnected": true,
         "lastUseTime": 1618299157443
     },
@@ -22,7 +22,7 @@
         "id": "HT00000003",
         "isOn": false,
         "color": 1,
-        "lightness": 0,
+        "brightness": 0,
         "isConnected": true,
         "lastUseTime": 1618299157443
     },
@@ -31,7 +31,7 @@
         "id": "HT00000004",
         "isOn": false,
         "color": 1,
-        "lightness": 0,
+        "brightness": 0,
         "isConnected": true,
         "lastUseTime": 1618299157443
     },
@@ -40,7 +40,7 @@
         "id": "MQ00000001",
         "isOn": false,
         "color": 1,
-        "lightness": 0,
+        "brightness": 0,
         "isConnected": true,
         "lastUseTime": 1618199157443
     },
@@ -49,7 +49,7 @@
         "id": "MQ00000002",
         "isOn": false,
         "color": 0,
-        "lightness": 0,
+        "brightness": 0,
         "isConnected": true,
         "lastUseTime": 1618199157443
     },
@@ -58,7 +58,7 @@
         "id": "MQ00000003",
         "isOn": false,
         "color": 2,
-        "lightness": 0,
+        "brightness": 0,
         "isConnected": true,
         "lastUseTime": 1618110685074
     },
@@ -67,7 +67,7 @@
         "id": "MQ00000004",
         "isOn": false,
         "color": 0,
-        "lightness": 0,
+        "brightness": 0,
         "isConnected": true,
         "lastUseTime": 1618110685074
     }

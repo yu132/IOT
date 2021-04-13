@@ -25,13 +25,13 @@
         />
       </div>
     </div>
-    <div class="lightness-wrapper row-height">
+    <div class="brightness-wrapper row-height">
       <span class="info-for">亮度：</span>
       <el-slider
-        v-model="lightness"
+        v-model="brightness"
         :style="{ flex: 1 }"
         :disabled="!lamp.isConnected"
-        @change="onLightnessChange"
+        @change="onBrightnessChange"
       ></el-slider>
     </div>
     <div class="last-use-time-wrapper">
@@ -79,7 +79,7 @@ export default {
   data() {
     return {
       colorSelectorWrapperShow: false,
-      lightness: this.lamp.lightness,
+      brightness: this.lamp.brightness,
       colors: consts.colors,
     };
   },
@@ -88,7 +88,7 @@ export default {
       return this.colors[this.lamp.color];
     },
     lampOpacity() {
-      return 0.4 + this.lamp.lightness * 0.004;
+      return 0.4 + this.lamp.brightness * 0.004;
     },
     lampFilter() {
       return this.lamp.isOn
@@ -144,9 +144,9 @@ export default {
       await api.color(this.lamp.id, colorIndex);
       this.lamp.color = colorIndex;
     },
-    async onLightnessChange() {
-      await api.brightness(this.lamp.id, this.lightness);
-      this.lamp.lightness = this.lightness;
+    async onBrightnessChange() {
+      await api.brightness(this.lamp.id, this.brightness);
+      this.lamp.brightness = this.brightness;
     },
     async onConnectControlClick() {
       const { id, isConnected } = this.lamp;
@@ -196,7 +196,7 @@ export default {
   padding: 0 6px;
 }
 .color-wrapper,
-.lightness-wrapper {
+.brightness-wrapper {
   display: flex;
   align-items: center;
   padding-right: 10px;

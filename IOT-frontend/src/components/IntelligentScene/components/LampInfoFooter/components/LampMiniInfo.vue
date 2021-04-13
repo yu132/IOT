@@ -29,7 +29,7 @@ export default {
       return consts.colors[this.lamp.color];
     },
     lampOpacity() {
-      return 0.4 + this.lamp.lightness * 0.004;
+      return 0.4 + this.lamp.brightness * 0.004;
     },
     lampFilter() {
       return this.lamp.isOn
