@@ -8,7 +8,7 @@
       :title="dialogTitle"
       :checkedOptionIds="partyLampIds"
       :options="lamps"
-      :beforeCloseCallback="updatePartyLampIds"
+      :beforeCloseCallback="beforeCloseCallback"
     />
   </div>
 </template>
@@ -37,6 +37,13 @@ export default {
   },
   methods: {
     ...mapActions(["updatePartyLampIds", "startParty", "endParty"]),
+    async beforeCloseCallback(lampIds) {
+      await this.updatePartyLampIds(lampIds);
+      if (this.isParty) {
+        await this.endParty();
+        await this.startParty();
+      }
+    },
     onPartyClick() {
       if (this.isParty) {
         this.endParty();
