@@ -53,7 +53,7 @@ export default {
 }
 .intelligent-scene-wrapper > .card > .top-i {
   border-radius: 50%;
-  box-shadow: inset 0 2px 12px 0 rgb(0 0 0 / 10%);
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
   font-size: 64px;
   width: 128px;
   height: 128px;
@@ -65,13 +65,19 @@ export default {
   position: absolute;
   bottom: 32px;
 }
-.intelligent-scene-wrapper > .card:hover > .top-i:hover {
-  box-shadow: inset 0 2px 12px 0 rgb(0 0 0 / 20%);
+.intelligent-scene-wrapper > .card > .top-i:hover {
   cursor: pointer;
   color: #409eff;
 }
-.intelligent-scene-wrapper > .card:hover > .setting:hover {
+.intelligent-scene-wrapper > .card > .top-i:active {
+  box-shadow: inset 0 2px 12px 0 rgb(0 0 0 / 10%);
+}
+.intelligent-scene-wrapper > .card > .setting:hover {
   cursor: pointer;
-  color: #409eff;
+  color: #40a0ffbd;
+}
+.intelligent-scene-wrapper > .card > .setting:active {
+  cursor: pointer;
+  color: #40a0ff;
 }
 </style>
