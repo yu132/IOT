@@ -74,7 +74,7 @@ function getIsPartyData (isParty) {
 }
 
 function setIsPartyData () {
-    return isPartyKey.getItem(returnHomeLampIdsKey) === '1';
+    return localStorage.getItem(returnHomeLampIdsKey) === '1';
 }
 
 export {
