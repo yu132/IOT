@@ -73,6 +73,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   overflow: hidden scroll;
+  background: #e9ecf3;
 
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -87,5 +88,6 @@ body {
   height: 100%;
   box-sizing: border-box;
   position: relative;
+  margin: 60px 0;
 }
 </style>

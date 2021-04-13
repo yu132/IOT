@@ -48,8 +48,8 @@ export default {
   flex-direction: column;
   padding: 10px;
   height: 100%;
+  min-width: 90px;
   box-sizing: border-box;
-  background: white;
 }
 .lamp-info-wrapper > .el-icon-table-lamp {
   font-size: 32px;

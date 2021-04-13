@@ -31,11 +31,12 @@ export default {
 
 <style scoped>
 .footer-wrapper {
+  background: white;
   height: 60px;
   width: 100%;
   display: flex;
   align-items: center;
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   overflow: scroll hidden;
