@@ -45,13 +45,28 @@ const store = new Vuex.Store({
             const { data } = await api.getLeaveHomeLampIds();
             commit('setLeaveHomeLampIds', data);
         },
+        async updateLeaveHomeLampIds ({ commit }, newIds) {
+            // TODO 后端请求
+            console.log(`updateLeaveHomeLampIds newIds:${ newIds }`);
+            commit('setLeaveHomeLampIds', newIds);
+        },
         async initReturnHomeLampIds ({ commit }) {
             const { data } = await api.getReturnHomeLampIds();
             commit('setReturnHomeLampIds', data);
         },
+        async updateReturnHomeLampIds ({ commit }, newIds) {
+            // TODO 后端请求
+            console.log(`updateReturnHomeLampIds newIds:${ newIds }`);
+            commit('setReturnHomeLampIds', newIds);
+        },
         async initPartyLampIds ({ commit }) {
             const { data } = await api.getPartyLampIds();
             commit('setPartyLampIds', data);
+        },
+        async updatePartyLampIds ({ commit }, newIds) {
+            // TODO 后端请求
+            console.log(`updatePartyLampIds newIds:${ newIds }`);
+            commit('setPartyLampIds', newIds);
         },
     }
 });
