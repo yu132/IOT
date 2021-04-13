@@ -3,7 +3,8 @@ const {
     mockLamps,
     mockLeaveHomeLampIds,
     mockReturnHomeLampIds,
-    mockPartyLampIds
+    mockPartyLampIds,
+    mockIsParty
 } = require('./../mockBackend/mockData');
 
 const keyPre = "IOT_FRONTEND";
@@ -24,6 +25,10 @@ function resetData () {
     if (getReturnHomeLampIdsData() === null)
     {
         setReturnHomeLampIdsData(mockReturnHomeLampIds);
+    }
+    if (getIsPartyData() === null)
+    {
+        setIsPartyData(mockIsParty);
     }
 }
 
@@ -63,6 +68,15 @@ function getReturnHomeLampIdsData () {
     return JSON.parse(localStorage.getItem(returnHomeLampIdsKey));
 }
 
+const isPartyKey = `${ keyPre }_returnHomeLampIds`;
+function getIsPartyData (isParty) {
+    localStorage.setItem(isPartyKey, JSON.stringify(isParty));
+}
+
+function setIsPartyData () {
+    return JSON.parse(isPartyKey.getItem(returnHomeLampIdsKey));
+}
+
 export {
     resetData,
     setLampsData,
@@ -72,5 +86,7 @@ export {
     setPartyLampIdsData,
     getPartyLampIdsData,
     setReturnHomeLampIdsData,
-    getReturnHomeLampIdsData
+    getReturnHomeLampIdsData,
+    setIsPartyData,
+    getIsPartyData
 };
