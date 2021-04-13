@@ -100,9 +100,18 @@ export default {
     },
     lastUseTimeStr() {
       const time = new Date(this.lamp.lastUseTime);
-      const hour = time.getHours();
-      const minute = time.getMinutes();
-      const second = time.getSeconds();
+      let hour = time.getHours();
+      if (hour < 10) {
+        hour = `0${hour}`;
+      }
+      let minute = time.getMinutes();
+      if (minute < 10) {
+        minute = `0${minute}`;
+      }
+      let second = time.getSeconds();
+      if (second < 10) {
+        second = `0${second}`;
+      }
       const timeStr = `${hour}:${minute}:${second}`;
 
       const oneDateTime = 24 * 60 * 60 * 1000;
