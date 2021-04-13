@@ -10,6 +10,9 @@ const {
     getLeaveHomeLampIdsUrl,
     getReturnHomeLampIdsUrl,
     getPartyLampIdsUrl,
+    setLeaveHomeLampIdsUrl,
+    setReturnHomeLampIdsUrl,
+    setPartyLampIdsUrl,
     getIsPartyUrl,
     setIsPartyUrl
 } = require('../util/consts/consts.json');
@@ -125,6 +128,30 @@ router.get(getPartyLampIdsUrl, async function (ctx) {
 router.get(getIsPartyUrl, async function (ctx) {
     allowSimpleOrigin(ctx);
     ctx.body = false;
+});
+
+router.options(setLeaveHomeLampIdsUrl, allowOrigin);
+router.post(setLeaveHomeLampIdsUrl, async function (ctx) {
+    allowSimpleOrigin(ctx);
+    const { lampIds } = ctx.request.body;
+    log(`${ setLeaveHomeLampIdsUrl } lampIds:${ lampIds }`);
+    ctx.status = 204;
+});
+
+router.options(setReturnHomeLampIdsUrl, allowOrigin);
+router.post(setReturnHomeLampIdsUrl, async function (ctx) {
+    allowSimpleOrigin(ctx);
+    const { lampIds } = ctx.request.body;
+    log(`${ setReturnHomeLampIdsUrl } lampIds:${ lampIds }`);
+    ctx.status = 204;
+});
+
+router.options(setPartyLampIdsUrl, allowOrigin);
+router.post(setPartyLampIdsUrl, async function (ctx) {
+    allowSimpleOrigin(ctx);
+    const { lampIds } = ctx.request.body;
+    log(`${ setPartyLampIdsUrl } lampIds:${ lampIds }`);
+    ctx.status = 204;
 });
 
 router.options(setIsPartyUrl, allowOrigin);

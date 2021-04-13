@@ -4,12 +4,12 @@ import {
     resetData,
     setLampsData,
     getLampsData,
-    // setLeaveHomeLampIdsData,
     getLeaveHomeLampIdsData,
-    // setPartyLampIdsData,
     getPartyLampIdsData,
-    // setReturnHomeLampIdsData,
     getReturnHomeLampIdsData,
+    setLeaveHomeLampIdsData,
+    setPartyLampIdsData,
+    setReturnHomeLampIdsData,
     setIsPartyData,
     getIsPartyData
 } from '../util/storage';
@@ -24,6 +24,9 @@ const {
     getLeaveHomeLampIdsUrl,
     getReturnHomeLampIdsUrl,
     getPartyLampIdsUrl,
+    setLeaveHomeLampIdsUrl,
+    setReturnHomeLampIdsUrl,
+    setPartyLampIdsUrl,
     getIsPartyUrl,
     setIsPartyUrl,
     useMock
@@ -111,6 +114,30 @@ let api = {
      */
     getPartyLampIds () {
         return instance.get(getPartyLampIdsUrl);
+    },
+    /**
+     * 设置离家相关灯具ID列表
+     * @param {Array<String>} lampIds 
+     * @returns {Promise<Array<String>>}
+     */
+    setLeaveHomeLampIds (lampIds) {
+        return instance.post(setLeaveHomeLampIdsUrl, { lampIds });
+    },
+    /**
+     * 设置归家相关灯具ID列表
+     * @param {Array<String>} lampIds 
+     * @returns {Promise<Array<String>>}
+     */
+    setReturnHomeLampIds (lampIds) {
+        return instance.post(setReturnHomeLampIdsUrl, { lampIds });
+    },
+    /**
+     * 设置Party相关灯具ID列表
+     * @param {Array<String>} lampIds 
+     * @returns {Promise<Array<String>>}
+     */
+    setPartyLampIds (lampIds) {
+        return instance.post(setPartyLampIdsUrl, { lampIds });
     },
     /**
      * 获取Party模式开启状态
@@ -201,6 +228,18 @@ const mockApi = {
     getPartyLampIds () {
         const data = getPartyLampIdsData();
         return Promise.resolve({ data });
+    },
+    setLeaveHomeLampIds (lampIds) {
+        setLeaveHomeLampIdsData(lampIds);
+        return Promise.resolve();
+    },
+    setReturnHomeLampIds (lampIds) {
+        setReturnHomeLampIdsData(lampIds);
+        return Promise.resolve();
+    },
+    setPartyLampIds (lampIds) {
+        setPartyLampIdsData(lampIds);
+        return Promise.resolve();
     },
     getIsParty () {
         const data = getIsPartyData();

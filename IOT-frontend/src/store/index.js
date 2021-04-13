@@ -57,8 +57,7 @@ const store = new Vuex.Store({
             commit('setLeaveHomeLampIds', data);
         },
         async updateLeaveHomeLampIds ({ commit }, newIds) {
-            // TODO 后端请求
-            console.log(`updateLeaveHomeLampIds newIds:${ newIds }`);
+            await api.setLeaveHomeLampIds(newIds);
             commit('setLeaveHomeLampIds', newIds);
         },
         async leaveHome ({ state }) {
@@ -71,8 +70,7 @@ const store = new Vuex.Store({
             commit('setReturnHomeLampIds', data);
         },
         async updateReturnHomeLampIds ({ commit }, newIds) {
-            // TODO 后端请求
-            console.log(`updateReturnHomeLampIds newIds:${ newIds }`);
+            await api.setReturnHomeLampIds(newIds);
             commit('setReturnHomeLampIds', newIds);
         },
         async returnHome ({ state }) {
@@ -85,8 +83,7 @@ const store = new Vuex.Store({
             commit('setPartyLampIds', data);
         },
         async updatePartyLampIds ({ commit }, newIds) {
-            // TODO 后端请求
-            console.log(`updatePartyLampIds newIds:${ newIds }`);
+            api.setPartyLampIds(newIds);
             commit('setPartyLampIds', newIds);
         },
         async initIsParty ({ commit }) {
