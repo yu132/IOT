@@ -41,7 +41,7 @@ let api = {
     on (lamp) {
         lamp.isOn = true;
         lamp.lastUseTime = Date.now();
-        return instance.post(onUrl, { lampId: lamp.id });
+        return instance.post(onUrl, { id: lamp.id });
     },
     /**
      * 关闭灯具
@@ -50,7 +50,7 @@ let api = {
     off (lamp) {
         lamp.isOn = false;
         lamp.lastUseTime = Date.now();
-        return instance.post(offUrl, { lampId: lamp.id });
+        return instance.post(offUrl, { id: lamp.id });
     },
     /**
      * 调整亮度
@@ -58,7 +58,7 @@ let api = {
      * @param {Number} brightness 1-100
      */
     brightness (lampId, brightness) {
-        return instance.post(brightnessUrl, { lampId, brightness });
+        return instance.post(brightnessUrl, { id: lampId, brightness });
     },
     /**
      * 调整颜色
@@ -66,7 +66,7 @@ let api = {
      * @param {Number} color 0-2
      */
     color (lampId, color) {
-        return instance.post(colorUrl, { lampId, color });
+        return instance.post(colorUrl, { id: lampId, color });
     },
     /**
      * 连接设备
@@ -82,7 +82,7 @@ let api = {
      * @param {String} lampId 
      */
     disconnect (lampId) {
-        return instance.post(disconnectUrl, { lampId });
+        return instance.post(disconnectUrl, { id: lampId });
     },
     /**
      * 获取灯泡数据
@@ -91,8 +91,33 @@ let api = {
      * 亮度 0-100
      * @returns {Promise<Array<{ name: String, id: String, isOn: Boolean, color: String, brightness: Number, isConnected: Boolean, lastUseTime: Number }>>}
      */
-    getLamps () {
-        return instance.get(getLampsUrl);
+    async getLamps () {
+        // 数据格式适配
+        const result = await instance.get(getLampsUrl);
+        const { data } = result;
+        if (data)
+        {
+            data.forEach(lamp => {
+                if (lamp.isConnected === undefined)
+                {
+                    lamp.isConnected = !!lamp.connected;
+                }
+                if (lamp.name === undefined)
+                {
+                    lamp.name = '灯';
+                }
+                if (lamp.id === undefined)
+                {
+                    lamp.id = `HT${ Math.random().toFixed(8).substr(2) }`;
+                }
+                if (lamp.lastUseTime === undefined)
+                {
+                    const oneDay = 24 * 60 * 60 * 1000;
+                    lamp.lastUseTime = Date.now() - Math.random() * 3 * oneDay;
+                }
+            });
+        }
+        return Promise.resolve(result);
     },
     /**
      * 获取离家相关灯具ID列表
