@@ -27,16 +27,18 @@ const {
     setLeaveHomeLampIdsUrl,
     setReturnHomeLampIdsUrl,
     setPartyLampIdsUrl,
+    leaveHomeUrl,
+    returnHomeUrl,
     getIsPartyUrl,
     setIsPartyUrl,
     useMock
 } = consts;
 
-// TODO 添加更新智慧场景相关灯具列表接口
 let api = {
     /**
      * 打开灯具
      * @param {{ name: String, id: String, isOn: Boolean, color: String, brightness: Number, isConnected: Boolean, lastUseTime: Number }} lamp 
+     * @returns {Promise<void>}
      */
     on (lamp) {
         lamp.isOn = true;
@@ -46,6 +48,7 @@ let api = {
     /**
      * 关闭灯具
      * @param {{ name: String, id: String, isOn: Boolean, color: String, brightness: Number, isConnected: Boolean, lastUseTime: Number }} lamp 
+     * @returns {Promise<void>}
      */
     off (lamp) {
         lamp.isOn = false;
@@ -56,6 +59,7 @@ let api = {
      * 调整亮度
      * @param {String} lampId 
      * @param {Number} brightness 1-100
+     * @returns {Promise<void>}
      */
     brightness (lampId, brightness) {
         return instance.post(brightnessUrl, { id: lampId, brightness });
@@ -64,6 +68,7 @@ let api = {
      * 调整颜色
      * @param {String} lampId 
      * @param {Number} color 0-2
+     * @returns {Promise<void>}
      */
     color (lampId, color) {
         return instance.post(colorUrl, { id: lampId, color });
@@ -72,6 +77,7 @@ let api = {
      * 连接设备
      * TODO 后端暂无该接口
      * @param {String} lampId 
+     * @returns {Promise<void>}
      */
     connect (lampId) {
         console.log(`[INFO] connect lampId: ${ lampId }`);
@@ -80,6 +86,7 @@ let api = {
     /**
      * 断开连接
      * @param {String} lampId 
+     * @returns {Promise<void>}
      */
     disconnect (lampId) {
         return instance.post(disconnectUrl, { id: lampId });
@@ -143,7 +150,7 @@ let api = {
     /**
      * 设置离家相关灯具ID列表
      * @param {Array<String>} lampIds 
-     * @returns {Promise<Array<String>>}
+     * @returns {Promise<void>}
      */
     setLeaveHomeLampIds (lampIds) {
         return instance.post(setLeaveHomeLampIdsUrl, { lampIds });
@@ -151,7 +158,7 @@ let api = {
     /**
      * 设置归家相关灯具ID列表
      * @param {Array<String>} lampIds 
-     * @returns {Promise<Array<String>>}
+     * @returns {Promise<void>}
      */
     setReturnHomeLampIds (lampIds) {
         return instance.post(setReturnHomeLampIdsUrl, { lampIds });
@@ -159,10 +166,24 @@ let api = {
     /**
      * 设置Party相关灯具ID列表
      * @param {Array<String>} lampIds 
-     * @returns {Promise<Array<String>>}
+     * @returns {Promise<void>}
      */
     setPartyLampIds (lampIds) {
         return instance.post(setPartyLampIdsUrl, { lampIds });
+    },
+    /**
+     * 离家
+     * @returns {Promise<void>}
+     */
+    leaveHome () {
+        return instance.get(leaveHomeUrl);
+    },
+    /**
+     * 回家
+     * @returns {Promise<void>}
+     */
+    returnHome () {
+        return instance.get(returnHomeUrl);
     },
     /**
      * 获取Party模式开启状态
@@ -174,7 +195,7 @@ let api = {
     /**
      * 设置Party模式开启状态
      * @param {Boolean} isParty 
-     * @returns {Promise<Boolean>}
+     * @returns {Promise<void>}
      */
     setIsParty (isParty) {
         return instance.post(setIsPartyUrl, { isParty });
@@ -264,6 +285,12 @@ const mockApi = {
     },
     setPartyLampIds (lampIds) {
         setPartyLampIdsData(lampIds);
+        return Promise.resolve();
+    },
+    leaveHome () {
+        return Promise.resolve();
+    },
+    returnHome () {
         return Promise.resolve();
     },
     getIsParty () {

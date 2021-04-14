@@ -13,6 +13,8 @@ const {
     setLeaveHomeLampIdsUrl,
     setReturnHomeLampIdsUrl,
     setPartyLampIdsUrl,
+    leaveHomeUrl,
+    returnHomeUrl,
     getIsPartyUrl,
     setIsPartyUrl
 } = require('../util/consts/consts.json');
@@ -128,6 +130,16 @@ router.get(getPartyLampIdsUrl, async function (ctx) {
 router.get(getIsPartyUrl, async function (ctx) {
     allowSimpleOrigin(ctx);
     ctx.body = false;
+});
+
+router.get(leaveHomeUrl, async function (ctx) {
+    allowSimpleOrigin(ctx);
+    ctx.status = 204;
+});
+
+router.get(returnHomeUrl, async function (ctx) {
+    allowSimpleOrigin(ctx);
+    ctx.status = 204;
 });
 
 router.options(setLeaveHomeLampIdsUrl, allowOrigin);
