@@ -1,0 +1,33 @@
+{
+    "deviceManageMenuIndex": "0",
+    "intelligentSceneMenuIndex": "1",
+    "dataChartMenuIndex": "2",
+    "colors": [
+        "red",
+        "yellow",
+        "green"
+    ],
+    "onUrl": "/on",
+    "offUrl": "/off",
+    "brightnessUrl": "/brightness",
+    "colorUrl": "/color",
+    "disconnectUrl": "/disconnect",
+    "connectUrl": "/connect",
+    "dataChartUrl": "http://123.206.230.74:8080/iotd/index",
+    "getLampsUrl": "/getLamps",
+    "getLeaveHomeLampIdsUrl": "/getLeaveHomeLampIds",
+    "getReturnHomeLampIdsUrl": "/getReturnHomeLampIds",
+    "getPartyLampIdsUrl": "/getPartyLampIds",
+    "setLeaveHomeLampIdsUrl": "/setLeaveHomeLampIds",
+    "setReturnHomeLampIdsUrl": "/setReturnHomeLampIds",
+    "setPartyLampIdsUrl": "/setPartyLampIds",
+    "leaveHomeUrl": "/leaveHome",
+    "returnHomeUrl": "/returnHome",
+    "getIsPartyUrl": "/getIsParty",
+    "setIsPartyUrl": "/setIsParty",
+    "partyIntervalTimeout": 1000,
+    "serverHost": "localhost",
+    "serverPort": 9000,
+    "timeout": 10000,
+    "useMock": true
+}

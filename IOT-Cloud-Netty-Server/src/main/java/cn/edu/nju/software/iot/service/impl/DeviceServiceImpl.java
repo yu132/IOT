@@ -2,6 +2,7 @@ package cn.edu.nju.software.iot.service.impl;
 
 import cn.edu.nju.software.iot.cloud.netty.server.MessageBuffer;
 import cn.edu.nju.software.iot.service.DeviceService;
+import cn.edu.nju.software.iot.shared.netty.server.NettyServer;
 import cn.hutool.core.codec.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
