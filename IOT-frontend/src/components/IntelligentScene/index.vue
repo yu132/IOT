@@ -50,11 +50,6 @@ export default {
   justify-content: center;
   position: relative;
 }
-.intelligent-scene-wrapper > .card > span {
-  font-size: 28px;
-  height: 42px;
-  line-height: 42px;
-}
 .intelligent-scene-wrapper > .card > .top-i {
   border-radius: 50%;
   box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
@@ -63,12 +58,18 @@ export default {
   height: 128px;
   line-height: 128px;
   text-align: center;
-  margin-bottom: 32px;
+  margin-top: 64px;
+}
+.intelligent-scene-wrapper > .card > span {
+  font-size: 28px;
+  height: 42px;
+  line-height: 42px;
+  margin: 32px 0;
+  width: 150px;
+  text-align: center;
 }
 .intelligent-scene-wrapper > .card > .setting {
   font-size: 32px;
-  position: absolute;
-  bottom: 32px;
 }
 .intelligent-scene-wrapper > .card > .top-i:hover {
   cursor: pointer;
@@ -84,5 +85,18 @@ export default {
 .intelligent-scene-wrapper > .card > .setting:active {
   cursor: pointer;
   color: #40a0ff;
+}
+@media all and (max-width: 768px) {
+  .intelligent-scene-wrapper {
+    flex-direction: column;
+  }
+  .intelligent-scene-wrapper > .card {
+    min-width: 400px;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .intelligent-scene-wrapper > .card > .top-i {
+    margin-top: 0;
+  }
 }
 </style>
