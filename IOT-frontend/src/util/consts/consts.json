@@ -13,7 +13,7 @@
     "colorUrl": "/color",
     "disconnectUrl": "/disconnect",
     "connectUrl": "/connect",
-    "dataChartUrl": "https://www.baidu.com",
+    "dataChartUrl": "http://123.206.230.74:8080/iotd/index",
     "getLampsUrl": "/getLamps",
     "getLeaveHomeLampIdsUrl": "/getLeaveHomeLampIds",
     "getReturnHomeLampIdsUrl": "/getReturnHomeLampIds",
