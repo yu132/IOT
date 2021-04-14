@@ -21,6 +21,8 @@
     "setLeaveHomeLampIdsUrl": "/setLeaveHomeLampIds",
     "setReturnHomeLampIdsUrl": "/setReturnHomeLampIds",
     "setPartyLampIdsUrl": "/setPartyLampIds",
+    "leaveHomeUrl": "/leaveHome",
+    "returnHomeUrl": "/returnHome",
     "getIsPartyUrl": "/getIsParty",
     "setIsPartyUrl": "/setIsParty",
     "partyIntervalTimeout": 1000,

@@ -63,6 +63,7 @@ const store = new Vuex.Store({
         async leaveHome ({ state }) {
             const { lamps, leaveHomeLampIds } = state;
             const leaveHomeLamps = lamps.filter(lamp => leaveHomeLampIds.indexOf(lamp.id) >= 0);
+            await api.leaveHome();
             await Promise.all(leaveHomeLamps.map(lamp => api.off(lamp)));
         },
         async initReturnHomeLampIds ({ commit }) {
@@ -76,6 +77,7 @@ const store = new Vuex.Store({
         async returnHome ({ state }) {
             const { lamps, returnHomeLampIds } = state;
             const returnHomeLamps = lamps.filter(lamp => returnHomeLampIds.indexOf(lamp.id) >= 0);
+            await api.returnHome();
             await Promise.all(returnHomeLamps.map(lamp => api.on(lamp)));
         },
         async initPartyLampIds ({ commit }) {
