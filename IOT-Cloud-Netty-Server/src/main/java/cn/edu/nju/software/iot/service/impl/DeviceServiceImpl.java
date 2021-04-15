@@ -24,8 +24,8 @@ public class DeviceServiceImpl implements DeviceService {
     @Autowired
     private NettyServer server;
     
-    @Autowired
-    private RestTemplate restTemplate;
+//    @Autowired
+//    private RestTemplate restTemplate;
     
     private String url = "http://123.206.230.74:8080/getInfo";
 
@@ -37,16 +37,16 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public String turnOn(String id) {
         writeMesg("testID1", "device-1", "on");
-        restTemplate.postForObject(url, null, String.class, "device-1",
-        		id + "_1_" + (int) (Math.random() * 100) + "_1");
+//        restTemplate.postForObject(url, null, String.class, "device-1",
+//        		id + "_1_" + (int) (Math.random() * 100) + "_1");
         return "true";
     }
 
     @Override
     public String turnOff(String id) {
         writeMesg("testID1", "device-1", "off");
-        restTemplate.postForObject(url, null, String.class, "device-1",
-        		id + "_0_" + (int) (Math.random() * 100) + "_0");
+//        restTemplate.postForObject(url, null, String.class, "device-1",
+//        		id + "_0_" + (int) (Math.random() * 100) + "_0");
         return "true";
     }
 
