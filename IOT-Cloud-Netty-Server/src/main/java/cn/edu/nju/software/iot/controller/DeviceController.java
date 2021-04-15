@@ -3,6 +3,7 @@ package cn.edu.nju.software.iot.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,7 @@ import cn.edu.nju.software.iot.service.DeviceService;
 
 @RestController
 @RequestMapping()
+@CrossOrigin("*")
 public class DeviceController {
 
     @Resource(name = "device-service")
