@@ -303,9 +303,10 @@ const mockApi = {
     }
 };
 
+resetData();
+
 if (useMock)
 {
-    resetData();
     api = mockApi;
 }
 
