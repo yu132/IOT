@@ -102,29 +102,31 @@ let api = {
         // 数据格式适配
         const result = await instance.get(getLampsUrl);
         const { data } = result;
-        if (data)
-        {
-            data.forEach(lamp => {
-                if (lamp.isConnected === undefined)
-                {
-                    lamp.isConnected = !!lamp.connected;
-                }
-                if (lamp.name === undefined)
-                {
-                    lamp.name = '灯';
-                }
-                if (lamp.id === undefined)
-                {
-                    lamp.id = `HT${ Math.random().toFixed(8).substr(2) }`;
-                }
-                if (lamp.lastUseTime === undefined)
-                {
-                    const oneDay = 24 * 60 * 60 * 1000;
-                    lamp.lastUseTime = Date.now() - Math.random() * 3 * oneDay;
-                }
-            });
-        }
-        return Promise.resolve(result);
+        console.log(data);
+        // if (data)
+        // {
+        //     data.forEach(lamp => {
+        //         if (lamp.isConnected === undefined)
+        //         {
+        //             lamp.isConnected = !!lamp.connected;
+        //         }
+        //         if (lamp.name === undefined)
+        //         {
+        //             lamp.name = '灯';
+        //         }
+        //         if (lamp.id === undefined)
+        //         {
+        //             lamp.id = `HT${ Math.random().toFixed(8).substr(2) }`;
+        //         }
+        //         if (lamp.lastUseTime === undefined)
+        //         {
+        //             const oneDay = 24 * 60 * 60 * 1000;
+        //             lamp.lastUseTime = Date.now() - Math.random() * 3 * oneDay;
+        //         }
+        //     });
+        // }
+        // return Promise.resolve(result);
+        return mockApi.getLamps();
     },
     /**
      * 获取离家相关灯具ID列表
