@@ -9,6 +9,9 @@ const {
 
 const instance = axios.create({
     baseURL: `http://${ serverHost }:${ serverPort }/`,
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    },
     timeout
 });
 
