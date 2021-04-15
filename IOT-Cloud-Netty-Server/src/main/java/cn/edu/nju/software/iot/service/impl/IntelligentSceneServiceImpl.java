@@ -1,7 +1,9 @@
 package cn.edu.nju.software.iot.service.impl;
 
+import org.jeasy.rules.api.Facts;
 import org.springframework.stereotype.Service;
 
+import cn.edu.nju.software.iot.rule.IotRulesEngine;
 import cn.edu.nju.software.iot.service.IntelligentSceneService;
 
 /**
@@ -19,6 +21,23 @@ public class IntelligentSceneServiceImpl implements IntelligentSceneService {
     private String[] returnHomeLampIds = {};
     private String[] partyLampIds = {};
     private boolean isParty = false;
+    private boolean isReturnHome = false;
+    private boolean isLeaveHome = false;
+    
+    private Facts createNewFacts() {
+    	Facts facts = new Facts();
+        facts.put("leaveHomeLampIds", this.leaveHomeLampIds);
+        facts.put("returnHomeLampIds", this.returnHomeLampIds);
+        facts.put("partyLampIds", this.partyLampIds);
+        facts.put("isParty", this.isParty);
+        facts.put("isReturnHome", this.isReturnHome);
+        facts.put("isLeaveHome", this.isLeaveHome);
+    	return facts;
+    }
+    
+    private void fireRulesEngine() {
+        IotRulesEngine.getInstance().fire(this.createNewFacts());
+    }
 
     @Override
     public String[] getLeaveHomeLampIds() {
@@ -52,12 +71,16 @@ public class IntelligentSceneServiceImpl implements IntelligentSceneService {
 
     @Override
     public void leaveHome() {
-        // TODO 触发规则引擎
+    	this.isLeaveHome = true;
+        this.fireRulesEngine();
+    	this.isLeaveHome = false;
     }
 
     @Override
     public void returnHome() {
-        // TODO 触发规则引擎
+    	this.isReturnHome = true;
+        this.fireRulesEngine();
+    	this.isReturnHome = false;
     }
 
     @Override
@@ -68,6 +91,6 @@ public class IntelligentSceneServiceImpl implements IntelligentSceneService {
     @Override
     public void setIsParty(boolean isParty) {
         this.isParty = isParty;
-        // TODO 触发规则引擎
+        this.fireRulesEngine();
     }
 }
