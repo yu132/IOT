@@ -4,6 +4,7 @@ import org.jeasy.rules.api.Facts;
 import org.springframework.stereotype.Service;
 
 import cn.edu.nju.software.iot.rule.IotRulesEngine;
+import cn.edu.nju.software.iot.service.DeviceService;
 import cn.edu.nju.software.iot.service.IntelligentSceneService;
 
 /**
@@ -33,7 +34,8 @@ public class IntelligentSceneServiceImpl implements IntelligentSceneService {
     	return facts;
     }
     
-    private void fireRulesEngine() {
+    private void fireRulesEngine(DeviceService deviceService) {
+        IotRulesEngine.getInstance().init(deviceService);
         IotRulesEngine.getInstance().fire(this.createNewFacts());
     }
 
@@ -68,16 +70,16 @@ public class IntelligentSceneServiceImpl implements IntelligentSceneService {
     }
 
     @Override
-    public void leaveHome() {
+    public void leaveHome(DeviceService deviceService) {
     	this.isLeaveHome = true;
-        this.fireRulesEngine();
+        this.fireRulesEngine(deviceService);
     	this.isLeaveHome = false;
     }
 
     @Override
-    public void returnHome() {
+    public void returnHome(DeviceService deviceService) {
     	this.isReturnHome = true;
-        this.fireRulesEngine();
+        this.fireRulesEngine(deviceService);
     	this.isReturnHome = false;
     }
 

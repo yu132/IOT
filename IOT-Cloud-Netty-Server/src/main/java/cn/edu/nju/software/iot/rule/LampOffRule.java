@@ -1,7 +1,5 @@
 package cn.edu.nju.software.iot.rule;
 
-import javax.annotation.Resource;
-
 import org.jeasy.rules.annotation.Action;
 import org.jeasy.rules.annotation.Condition;
 import org.jeasy.rules.annotation.Fact;
@@ -13,13 +11,12 @@ import cn.edu.nju.software.iot.service.DeviceService;
 public class LampOffRule {
 	
 	private String lampId;
-	
-	public LampOffRule(String lampId) {
-		this.lampId = lampId;
-	}
-
-    @Resource(name = "device-service")
     private DeviceService deviceService;
+	
+	public LampOffRule(String lampId, DeviceService deviceService) {
+		this.lampId = lampId;
+		this.deviceService = deviceService;
+	}
 
     @Condition
     public boolean when(@Fact("leaveHomeLampIds") String[] leaveHomeLampIds, @Fact("isLeaveHome") boolean isLeaveHome) {

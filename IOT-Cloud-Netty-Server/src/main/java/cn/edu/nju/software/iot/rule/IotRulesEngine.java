@@ -1,7 +1,5 @@
 package cn.edu.nju.software.iot.rule;
 
-import javax.annotation.Resource;
-
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rules;
 import org.jeasy.rules.api.RulesEngine;
@@ -18,23 +16,24 @@ public class IotRulesEngine {
 	
 	private Rules rules;
 	private RulesEngine rulesEngine;
-
-    @Resource(name = "device-service")
     private DeviceService deviceService;
+    private boolean inited = false;
 	
-	private IotRulesEngine() {
+	private IotRulesEngine() { }
+	
+	public void init(DeviceService deviceService) {
+		if (this.inited) {
+			return;
+		}
         this.rules = new Rules();
-        this.initRules();
-
-        this.rulesEngine = new DefaultRulesEngine();
-	}
-	
-	private void initRules() {
+		this.deviceService = deviceService;
 		String[] lampIds = this.deviceService.getLamps();
 		for (String lampId : lampIds) {			
-			rules.register(new LampOnRule(lampId));
-			rules.register(new LampOffRule(lampId));
+			rules.register(new LampOnRule(lampId, deviceService));
+			rules.register(new LampOffRule(lampId, deviceService));
 		}
+        this.rulesEngine = new DefaultRulesEngine();
+        this.inited = true;
 	}
 	
 	public void fire(Facts facts) {
