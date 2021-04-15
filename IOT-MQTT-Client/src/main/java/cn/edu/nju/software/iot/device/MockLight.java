@@ -82,9 +82,9 @@ public class MockLight {
         return color;
     }
 
-    public native boolean changeBrightnessOfLight(int brightness);
-    public native boolean changeColor(int color);
-    public native boolean changeToOn();
-    public native boolean changeToOff();
-    public native boolean changeToDisconnected();
+    public boolean changeBrightnessOfLight(int brightness) {return true;}
+    public boolean changeColor(int color) {return true;}
+    public boolean changeToOn() {return true;}
+    public boolean changeToOff() {return true;}
+    public boolean changeToDisconnected() {return true;}
 }
