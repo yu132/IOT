@@ -1,0 +1,15 @@
+mqtt: 
+    brokerHostAndPort: tcp://127.0.0.1:1883
+    id: device-1
+    userName: admin
+    passWord: admin
+    is-mqtt-client: true
+http: 
+    ip: 127.0.0.1
+    port: 54322
+device: 
+    is-light: true
+    is-sensor: true
+spring: 
+    main: 
+        web-application-type: NONE

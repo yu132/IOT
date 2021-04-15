@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(prefix = "device", name = "is-light",
     havingValue = "true")
 public class MockLight {
-    boolean isOn, connected;
-    int brightness, color;
+    boolean isOn = false, connected = true;
+    int brightness = 0, color = 0;
 
     public boolean setBrightness(int brightness) {
         if (brightness < 0 || brightness > 100) {
@@ -31,7 +31,7 @@ public class MockLight {
     }
 
     public boolean setColor(int color) {
-        if (color < 0 || brightness > 10) {
+        if (color < 0 || color > 10) {
             System.out.println("灯的颜色值非法！");
             return false;
         }

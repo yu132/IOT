@@ -1,6 +1,7 @@
 package cn.edu.nju.software.iot;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.function.BiConsumer;
 
 import javax.annotation.Resource;
@@ -47,10 +48,14 @@ public class MQTTDeviceApplication implements CommandLineRunner {
 
         client.subscribe(receiveTopic, callback);
 
+        Scanner scan = new Scanner(System.in);
         while (true) {// 模拟10s发送一次传感器数据
             Thread.sleep(10000);
+            if (scan.nextInt() == 0)
+            	break;
             publishInMqtt(client, device);
         }
+        scan.close();
     }
 
     private void publishInMqtt(MQTTClient client, MockIOTDevice device) {

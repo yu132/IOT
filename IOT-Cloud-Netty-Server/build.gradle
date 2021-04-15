@@ -42,16 +42,4 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13'
-
-    // https://mvnrepository.com/artifact/org.jeasy/easy-rules-core
-    implementation group: 'org.jeasy', name: 'easy-rules-core', version: '4.1.0'
-
-
-    // https://mvnrepository.com/artifact/org.jeasy/easy-rules-mvel
-    implementation group: 'org.jeasy', name: 'easy-rules-mvel', version: '4.1.0'
-
-    // https://mvnrepository.com/artifact/org.jeasy/easy-rules-support
-    implementation group: 'org.jeasy', name: 'easy-rules-support', version: '4.1.0'
-
-
 }
