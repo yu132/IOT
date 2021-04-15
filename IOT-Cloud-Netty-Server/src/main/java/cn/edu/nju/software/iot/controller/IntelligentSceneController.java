@@ -3,7 +3,10 @@ package cn.edu.nju.software.iot.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import cn.edu.nju.software.iot.service.DeviceService;
 import cn.edu.nju.software.iot.service.IntelligentSceneService;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping()
+@CrossOrigin("*")
 public class IntelligentSceneController {
+
+    @Resource(name = "device-service")
+    private DeviceService deviceService;
 
     @Resource(name = "intelligent-scene-service")
     private IntelligentSceneService intelligentSceneService;
@@ -59,12 +66,12 @@ public class IntelligentSceneController {
 
     @RequestMapping(value = "leaveHome")
     public void leaveHome(HttpServletRequest req) {
-        intelligentSceneService.leaveHome();
+        intelligentSceneService.leaveHome(this.deviceService);
     }
 
     @RequestMapping(value = "returnHome")
     public void returnHome(HttpServletRequest req) {
-        intelligentSceneService.returnHome();
+        intelligentSceneService.returnHome(this.deviceService);
     }
 
     @RequestMapping(value = "getIsParty")

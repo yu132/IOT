@@ -43,7 +43,7 @@ let api = {
     on (lamp) {
         lamp.isOn = true;
         lamp.lastUseTime = Date.now();
-        return instance.post(onUrl, { id: lamp.id });
+        return instance.post(onUrl, `id=${ lamp.id }`);
     },
     /**
      * 关闭灯具
@@ -53,7 +53,7 @@ let api = {
     off (lamp) {
         lamp.isOn = false;
         lamp.lastUseTime = Date.now();
-        return instance.post(offUrl, { id: lamp.id });
+        return instance.post(offUrl, `id=${ lamp.id }`);
     },
     /**
      * 调整亮度
@@ -62,7 +62,7 @@ let api = {
      * @returns {Promise<void>}
      */
     brightness (lampId, brightness) {
-        return instance.post(brightnessUrl, { id: lampId, brightness });
+        return instance.post(brightnessUrl, `id=${ lampId }&brightness=${ brightness }`);
     },
     /**
      * 调整颜色
@@ -71,7 +71,7 @@ let api = {
      * @returns {Promise<void>}
      */
     color (lampId, color) {
-        return instance.post(colorUrl, { id: lampId, color });
+        return instance.post(colorUrl, `id=${ lampId }&color=${ color }`);
     },
     /**
      * 连接设备
@@ -89,7 +89,7 @@ let api = {
      * @returns {Promise<void>}
      */
     disconnect (lampId) {
-        return instance.post(disconnectUrl, { id: lampId });
+        return instance.post(disconnectUrl, `id=${ lampId }`);
     },
     /**
      * 获取灯泡数据
@@ -102,29 +102,31 @@ let api = {
         // 数据格式适配
         const result = await instance.get(getLampsUrl);
         const { data } = result;
-        if (data)
-        {
-            data.forEach(lamp => {
-                if (lamp.isConnected === undefined)
-                {
-                    lamp.isConnected = !!lamp.connected;
-                }
-                if (lamp.name === undefined)
-                {
-                    lamp.name = '灯';
-                }
-                if (lamp.id === undefined)
-                {
-                    lamp.id = `HT${ Math.random().toFixed(8).substr(2) }`;
-                }
-                if (lamp.lastUseTime === undefined)
-                {
-                    const oneDay = 24 * 60 * 60 * 1000;
-                    lamp.lastUseTime = Date.now() - Math.random() * 3 * oneDay;
-                }
-            });
-        }
-        return Promise.resolve(result);
+        console.log(data);
+        // if (data)
+        // {
+        //     data.forEach(lamp => {
+        //         if (lamp.isConnected === undefined)
+        //         {
+        //             lamp.isConnected = !!lamp.connected;
+        //         }
+        //         if (lamp.name === undefined)
+        //         {
+        //             lamp.name = '灯';
+        //         }
+        //         if (lamp.id === undefined)
+        //         {
+        //             lamp.id = `HT${ Math.random().toFixed(8).substr(2) }`;
+        //         }
+        //         if (lamp.lastUseTime === undefined)
+        //         {
+        //             const oneDay = 24 * 60 * 60 * 1000;
+        //             lamp.lastUseTime = Date.now() - Math.random() * 3 * oneDay;
+        //         }
+        //     });
+        // }
+        // return Promise.resolve(result);
+        return mockApi.getLamps();
     },
     /**
      * 获取离家相关灯具ID列表
@@ -153,7 +155,7 @@ let api = {
      * @returns {Promise<void>}
      */
     setLeaveHomeLampIds (lampIds) {
-        return instance.post(setLeaveHomeLampIdsUrl, { lampIds });
+        return instance.post(setLeaveHomeLampIdsUrl, `lampIds=${ lampIds }`);
     },
     /**
      * 设置归家相关灯具ID列表
@@ -161,7 +163,7 @@ let api = {
      * @returns {Promise<void>}
      */
     setReturnHomeLampIds (lampIds) {
-        return instance.post(setReturnHomeLampIdsUrl, { lampIds });
+        return instance.post(setReturnHomeLampIdsUrl, `lampIds=${ lampIds }`);
     },
     /**
      * 设置Party相关灯具ID列表
@@ -169,7 +171,7 @@ let api = {
      * @returns {Promise<void>}
      */
     setPartyLampIds (lampIds) {
-        return instance.post(setPartyLampIdsUrl, { lampIds });
+        return instance.post(setPartyLampIdsUrl, `lampIds=${ lampIds }`);
     },
     /**
      * 离家
@@ -198,7 +200,7 @@ let api = {
      * @returns {Promise<void>}
      */
     setIsParty (isParty) {
-        return instance.post(setIsPartyUrl, { isParty });
+        return instance.post(setIsPartyUrl, `isParty=${ isParty }`);
     }
 };
 
@@ -303,9 +305,10 @@ const mockApi = {
     }
 };
 
+resetData();
+
 if (useMock)
 {
-    resetData();
     api = mockApi;
 }
 

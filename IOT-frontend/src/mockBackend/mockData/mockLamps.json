@@ -1,74 +1,11 @@
 [
     {
-        "name": "客厅里的灯1",
-        "id": "HT00000001",
+        "name": "测试用灯",
+        "id": "device-1",
         "isOn": false,
         "color": 0,
         "brightness": 0,
         "isConnected": true,
         "lastUseTime": 1618299157443
-    },
-    {
-        "name": "客厅里的灯2",
-        "id": "HT00000002",
-        "isOn": false,
-        "color": 1,
-        "brightness": 0,
-        "isConnected": true,
-        "lastUseTime": 1618299157443
-    },
-    {
-        "name": "客厅里的灯3",
-        "id": "HT00000003",
-        "isOn": false,
-        "color": 1,
-        "brightness": 0,
-        "isConnected": true,
-        "lastUseTime": 1618299157443
-    },
-    {
-        "name": "客厅里的灯4",
-        "id": "HT00000004",
-        "isOn": false,
-        "color": 1,
-        "brightness": 0,
-        "isConnected": true,
-        "lastUseTime": 1618299157443
-    },
-    {
-        "name": "主卧里的灯1",
-        "id": "MQ00000001",
-        "isOn": false,
-        "color": 1,
-        "brightness": 0,
-        "isConnected": true,
-        "lastUseTime": 1618199157443
-    },
-    {
-        "name": "主卧里的灯2",
-        "id": "MQ00000002",
-        "isOn": false,
-        "color": 0,
-        "brightness": 0,
-        "isConnected": true,
-        "lastUseTime": 1618199157443
-    },
-    {
-        "name": "次卧里的灯1",
-        "id": "MQ00000003",
-        "isOn": false,
-        "color": 2,
-        "brightness": 0,
-        "isConnected": true,
-        "lastUseTime": 1618110685074
-    },
-    {
-        "name": "次卧里的灯2",
-        "id": "MQ00000004",
-        "isOn": false,
-        "color": 0,
-        "brightness": 0,
-        "isConnected": true,
-        "lastUseTime": 1618110685074
     }
 ]

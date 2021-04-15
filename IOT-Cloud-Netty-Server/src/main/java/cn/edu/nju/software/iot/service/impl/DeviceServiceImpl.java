@@ -1,14 +1,12 @@
 package cn.edu.nju.software.iot.service.impl;
 
-import cn.edu.nju.software.iot.cloud.netty.server.MessageBuffer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
 import cn.edu.nju.software.iot.service.DeviceService;
 import cn.edu.nju.software.iot.shared.netty.server.NettyServer;
 import cn.hutool.core.codec.Base64;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @ClassName: RouterService
@@ -25,6 +23,11 @@ import java.util.Date;
 public class DeviceServiceImpl implements DeviceService {
     @Autowired
     private NettyServer server;
+    
+//    @Autowired
+//    private RestTemplate restTemplate;
+    
+    private String url = "http://123.206.230.74:8080/getInfo";
 
     public void writeMesg(String clientId, String deviceId, String mesg) {
         String data = Base64.encode(mesg);
@@ -33,37 +36,40 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Override
     public String turnOn(String id) {
-        MessageBuffer.write(id + " 1 " + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
         writeMesg("testID1", "device-1", "on");
+//        restTemplate.postForObject(url, null, String.class, "device-1",
+//        		id + "_1_" + (int) (Math.random() * 100) + "_1");
         return "true";
     }
 
     @Override
     public String turnOff(String id) {
-        MessageBuffer.write(id + " 0 " + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
         writeMesg("testID1", "device-1", "off");
+//        restTemplate.postForObject(url, null, String.class, "device-1",
+//        		id + "_0_" + (int) (Math.random() * 100) + "_0");
         return "true";
     }
 
     @Override
     public String changeBrightness(String id, int brightness) {
-//        MessageBuffer.write(id + " " + 1 + " " + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
         writeMesg("testID1", "device-1", "brightness " + brightness);
         return "true";
     }
 
     @Override
     public String changeColor(String id, int color) {
-//        MessageBuffer.write(id + " " + 1 + " " + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
         writeMesg("testID1", "device-1", "color " + color);
         return "true";
     }
 
     @Override
     public String disconnect(String id) {
-//        MessageBuffer.write(id + " " + 1 + " " + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
         writeMesg("testID1", "device-1", "disconnect");
         return "true";
     }
 
+    @Override
+    public String[] getLamps() {
+    	return new String[] { "device-1", "device-2", "device-3", "device-4" };
+    }
 }

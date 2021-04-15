@@ -2,22 +2,22 @@ package cn.edu.nju.software.iot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BiConsumer;
 
-import cn.edu.nju.software.iot.device.MockIOTDevice;
-import cn.edu.nju.software.iot.device.sensor.BrightnessSensor;
-import cn.edu.nju.software.iot.device.sensor.MockSensor;
-import cn.edu.nju.software.iot.device.command.Command;
-import cn.edu.nju.software.iot.device.command.CommandMesgParser;
-import cn.edu.nju.software.iot.device.sensor.PressureSensor;
-import cn.edu.nju.software.iot.device.sensor.TemperatureSensor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
+
+import cn.edu.nju.software.iot.device.MockIOTDevice;
+import cn.edu.nju.software.iot.device.command.Command;
+import cn.edu.nju.software.iot.device.command.CommandMesgParser;
+import cn.edu.nju.software.iot.device.sensor.BrightnessSensor;
+import cn.edu.nju.software.iot.device.sensor.MockSensor;
+import cn.edu.nju.software.iot.device.sensor.PressureSensor;
+import cn.edu.nju.software.iot.device.sensor.TemperatureSensor;
 
 /**  
  * @ClassName: AppConfiguration  

@@ -7,8 +7,8 @@ public interface IntelligentSceneService {
     public void setReturnHomeLampIds(String[] lampIds);
     public String[] getPartyLampIds();
     public void setPartyLampIds(String[] lampIds);
-    public void leaveHome();
-    public void returnHome();
+    public void leaveHome(DeviceService deviceService);
+    public void returnHome(DeviceService deviceService);
     public boolean getIsParty();
     public void setIsParty(boolean isParty);
 }

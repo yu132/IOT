@@ -1,13 +1,13 @@
 package cn.edu.nju.software.iot.shared.netty.server;
 
-import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import io.netty.channel.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import io.netty.channel.Channel;
 
 /**  
  * @ClassName: IdentityAuthentication  
