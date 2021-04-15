@@ -28,8 +28,6 @@ public class IntelligentSceneServiceImpl implements IntelligentSceneService {
     	Facts facts = new Facts();
         facts.put("leaveHomeLampIds", this.leaveHomeLampIds);
         facts.put("returnHomeLampIds", this.returnHomeLampIds);
-        facts.put("partyLampIds", this.partyLampIds);
-        facts.put("isParty", this.isParty);
         facts.put("isReturnHome", this.isReturnHome);
         facts.put("isLeaveHome", this.isLeaveHome);
     	return facts;
@@ -91,6 +89,5 @@ public class IntelligentSceneServiceImpl implements IntelligentSceneService {
     @Override
     public void setIsParty(boolean isParty) {
         this.isParty = isParty;
-        this.fireRulesEngine();
     }
 }
